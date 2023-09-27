@@ -1,9 +1,9 @@
 
-<h2>Desarrollo Web Entorno Cliente</h2>
+<h2 align="center">Desarrollo Web Entorno Cliente</h2>
 
 <table>
     <tr>
-        <th>Tema</th>
+        <th style="background-color: aqua;">Tema</th>
         <th>Contenido</th>
     </tr>
     <tr>
