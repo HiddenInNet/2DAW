@@ -1,0 +1,71 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Ejercicio 14 - DOM b�sico y atributos XHTML</title>
+</head>
+
+<script>
+
+    function muestraOculta(seccion, enlace) {
+
+        if (seccion.style.display == "block" || seccion.style.display == "") {
+
+            seccion.style.display = "none";
+            enlace.innerText = "Mostrar contenido"
+            console.log("contenido oculto");
+
+        } else {
+
+            seccion.style.display = "block";
+            enlace.innerText = "Ocultar contenidos";
+            console.log("contenido visible");
+        }
+
+    }
+
+    window.onload = function () {
+
+        document.getElementById("enlace_1").onclick = function () {
+            muestraOculta(document.getElementById("contenidos_1"), document.getElementById("enlace_1"));
+        };
+        document.getElementById("enlace_2").onclick = function () {
+            muestraOculta(document.getElementById("contenidos_2"), document.getElementById("enlace_2"));
+        };
+        document.getElementById("enlace_3").onclick = function () {
+            muestraOculta(document.getElementById("contenidos_3"), document.getElementById("enlace_3"));
+        };
+
+    }
+
+</script>
+
+<body>
+    <p id="contenidos_1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus
+        libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc,
+        posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices
+        porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis,
+        faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
+        posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+    <a id="enlace_1" href="#">Ocultar contenidos</a>
+    <br />
+    <p id="contenidos_2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus
+        libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc,
+        posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices
+        porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis,
+        faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
+        posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+    <a id="enlace_2" href="#">Ocultar contenidos</a>
+    <br />
+    <p id="contenidos_3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus
+        libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc,
+        posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices
+        porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis,
+        faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
+        posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+    <a id="enlace_3" href="#">Ocultar contenidos</a>
+</body>
+
+</html>

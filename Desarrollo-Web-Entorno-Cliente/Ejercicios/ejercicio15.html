@@ -1,0 +1,104 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Ejercicio 15 - Informaci�n sobre eventos</title>
+    <style type="text/css">
+        body {
+            font-family: arial, helvetica;
+        }
+
+        #info {
+            width: 160px;
+            border: thin solid silver;
+            padding: .5em;
+            position: fixed;
+        }
+
+        #info h1 {
+            margin: 0;
+        }
+    </style>
+    <script>
+        function muestraInformacion(mensaje) {
+            document.getElementById("info").innerHTML = '<h1>' + mensaje[0] + '</h1>';
+            for (var i = 1; i < mensaje.length; i++) {
+                document.getElementById("info").innerHTML += '<p>' + mensaje[i] + '</p>';
+            }
+        }
+
+        function miFuncionManejadoraDelEvento(evento) {
+            // Codigo para meter en un array las coordenadas del puntero del raton:
+            //console.log(evento.type);
+
+            switch (evento.type) {
+
+                case "mousemove":
+
+                    let array = new Array();
+
+                    array[0] = "Raton";
+                    array[1] = "Navegador [" + evento.clientX + "," + evento.clientY + "]";
+                    array[2] = "Pagina [" + evento.pageX + "," + evento.pageY + "]";
+                    array[3] = "Pantalla [" + evento.screenX + "," + evento.screenY + "]";
+                    document.getElementById("info").style.backgroundColor = "#FFFFF";
+
+                    muestraInformacion(array);
+
+                    break;
+
+                case "keypress":
+
+                    let array1 = new Array();
+
+                    array1[0] = "Teclado";
+                    array1[1] = "Letra [" + String.fromCharCode(evento.charCode) + "]";
+                    array1[2] = "keyCode [" + evento.charCode + "]";
+                    document.getElementById("info").style.backgroundColor = "#CCE6FF";
+
+                    // Mandar ese array a muestraInformacion
+
+                    muestraInformacion(array1);
+
+                    break;
+
+                case "click":
+
+                    document.getElementById("info").style.backgroundColor = "#FFFFCC";
+
+                    break;
+            }
+        }
+
+        function moverCartel(evento) {
+
+            console.log(evento);
+
+            document.getElementById("info").style.position = "absolute";
+
+            document.getElementById("info").style.left = evento.pageX - document.getElementById("info").offsetWidth / 2 + 'px';
+            document.getElementById("info").style.top = evento.pageY - document.getElementById("info").offsetHeight / 2 + 'px';
+
+        }
+
+        window.onload = function () {
+            // Asignamos el evento correspondiente
+
+            document.onmousemove = miFuncionManejadoraDelEvento;
+            document.onkeypress = miFuncionManejadoraDelEvento;
+            document.onclick = miFuncionManejadoraDelEvento;
+            document.getElementById("info").onmousedown = moverCartel;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="info"></div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</body>
+
+</html>
