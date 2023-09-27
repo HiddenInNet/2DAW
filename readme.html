@@ -2,7 +2,7 @@
 
 <table>
     <tr>
-        <th style="background-color: aqua;">Tema</th>
+        <th style="color: chartreuse;">Tema</th>
         <th>Contenido</th>
     </tr>
     <tr>
