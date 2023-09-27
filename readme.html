@@ -2,11 +2,14 @@
 
 <table>
     <tr>
-        <th style="color: chartreuse;">Tema</th>
-        <th>Contenido</th>
+        <th align="center">Tema</th>
+        <th align="center">Contenido</th>
     </tr>
     <tr>
-        <td>Tema 1</td>
-        <td>Tema 2</td>
+        <td align="left">Tema 1</td>
+        <td>JavaScript</td>
+    </tr>
+    <tr>
+        <td align="left">Tema 2</td>
     </tr>
 </table>
