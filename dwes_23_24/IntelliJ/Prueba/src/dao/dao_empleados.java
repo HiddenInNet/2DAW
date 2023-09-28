@@ -14,8 +14,6 @@ public class dao_empleados {
 
     public static List<Employees> getEmpleados() {
 
-        //  "SELECT * FROM  employees"
-
         Connection con = ConexionBD.getConnection();
 
         ArrayList<Employees> listaEmpleados = new ArrayList<Employees>();
@@ -23,7 +21,7 @@ public class dao_empleados {
         try {
             Statement statement = con.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM employees;");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM employees WHERE firstName='Diane';");
 
             while (resultSet.next()) {
                 Employees employee = new Employees(
@@ -50,5 +48,4 @@ public class dao_empleados {
 
         return listaEmpleados;
     }
-
 }
