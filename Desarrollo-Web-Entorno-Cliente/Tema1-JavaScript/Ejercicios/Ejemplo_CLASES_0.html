@@ -39,10 +39,23 @@
 		class Circulo {
 			constructor(f = 0, c = 0, r = 0) {
 
+				if (f instanceof Punto) {
+
+					this.punto = new Punto(f);
+					this.radio = c;
+
+				} else {
+
+					this.punto = new Punto(f, c);
+					this.radio = r;
+				}
+
 			}
 
 			//  Métodos:
 			mostrar() {
+
+				return "Es un circulo con centro en el punto: " + this.punto.F_mostrar + " y  radio: " + this.radio;
 
 			}
 			LongCircunferencia() {
