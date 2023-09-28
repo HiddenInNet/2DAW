@@ -22,6 +22,9 @@
         }
     </style>
     <script>
+
+        var botn = 0;
+
         function muestraInformacion(mensaje) {
             document.getElementById("info").innerHTML = '<h1>' + mensaje[0] + '</h1>';
             for (var i = 1; i < mensaje.length; i++) {
@@ -36,6 +39,13 @@
             switch (evento.type) {
 
                 case "mousemove":
+
+                    if (botn == 1) {
+
+                        document.getElementById("info").style.left = evento.clientX - document.getElementById("info").offsetWidth / 2 + "px";
+                        document.getElementById("info").style.top = evento.clientY - document.getElementById("info").offsetHeight / 2 + "px";
+
+                    }
 
                     let array = new Array();
 
@@ -72,14 +82,15 @@
             }
         }
 
-        function moverCartel(evento) {
+        function inicioEvento(evento) {
 
-            console.log(evento);
+            botn = 1;
 
-            document.getElementById("info").style.position = "absolute";
+        }
 
-            document.getElementById("info").style.left = evento.pageX - document.getElementById("info").offsetWidth / 2 + 'px';
-            document.getElementById("info").style.top = evento.pageY - document.getElementById("info").offsetHeight / 2 + 'px';
+        function finEvento(evento) {
+
+            botn = 0;
 
         }
 
@@ -89,7 +100,8 @@
             document.onmousemove = miFuncionManejadoraDelEvento;
             document.onkeypress = miFuncionManejadoraDelEvento;
             document.onclick = miFuncionManejadoraDelEvento;
-            document.getElementById("info").onmousedown = moverCartel;
+            document.getElementById("info").onmousedown = inicioEvento;
+            document.getElementById("info").onmouseup = finEvento;
         }
     </script>
 </head>
