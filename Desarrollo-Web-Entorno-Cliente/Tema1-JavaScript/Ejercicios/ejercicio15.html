@@ -42,8 +42,8 @@
 
                     if (botn == 1) {
 
-                        document.getElementById("info").style.left = evento.clientX - document.getElementById("info").offsetWidth / 2 + "px";
-                        document.getElementById("info").style.top = evento.clientY - document.getElementById("info").offsetHeight / 2 + "px";
+                        document.getElementById("info").style.left = (evento.clientX - despCajaX) + "px";
+                        document.getElementById("info").style.top = (evento.clientY - despCajaY) + "px";
 
                     }
 
@@ -82,10 +82,13 @@
             }
         }
 
-        function inicioEvento(evento) {
-
+        function inicioMover(evento) {
             botn = 1;
 
+            despCajaX = evento.clientX - document.getElementById("info").style.left.split("px")[0];
+            despCajaY = evento.clientY - document.getElementById("info").style.top.split("px")[0];
+
+            return false;
         }
 
         function finEvento(evento) {
@@ -100,7 +103,7 @@
             document.onmousemove = miFuncionManejadoraDelEvento;
             document.onkeypress = miFuncionManejadoraDelEvento;
             document.onclick = miFuncionManejadoraDelEvento;
-            document.getElementById("info").onmousedown = inicioEvento;
+            document.getElementById("info").onmousedown = inicioMover;
             document.getElementById("info").onmouseup = finEvento;
         }
     </script>
