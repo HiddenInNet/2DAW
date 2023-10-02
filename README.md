@@ -1,4 +1,4 @@
-<a href="./Desarrollo-Web-Entorno-Cliente"><h2 align="center">Desarrollo Web Entorno Cliente</h2></a>
+<a href="/Desarrollo-Web-Entorno-Cliente"><h2 align="center">Desarrollo Web Entorno Cliente</h2></a>
 
 <table>
     <tr>
@@ -6,7 +6,7 @@
         <th align="center">Contenido</th>
     </tr>
     <tr>
-        <td align="left">Tema 1</td>
+        <td align="left"><a href="Desarrollo-Web-Entorno-Cliente/Tema1-Int"></td>
         <td>Introduccion a JavaScript</td>
     </tr>
     <tr>
