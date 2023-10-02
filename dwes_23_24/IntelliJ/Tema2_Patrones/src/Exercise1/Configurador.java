@@ -11,5 +11,5 @@ public class Configurador {
         this.configuracion = configuracion;
     }
 
-    public static
+    //public static
 }
