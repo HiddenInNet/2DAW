@@ -5,9 +5,9 @@
         <th align="center">Tema</th>
         <th align="center">Contenido</th>
     </tr>
-    <tr><a href="Desarrollo-Web-Entorno-Cliente/Tema1-IntroduccionJS">
+    <tr>
         <td align="left"><a href="Desarrollo-Web-Entorno-Cliente/Tema1-IntroduccionJS">Tema 1</a></td>
-        <td>Introduccion a JavaScript</td></a>
+        <td>Introduccion a JavaScript</td>
     </tr>
     <tr>
         <td align="left">Tema 2</td>
