@@ -6,7 +6,7 @@
         <th align="center">Contenido</th>
     </tr>
     <tr>
-        <td align="left"><a href="Desarrollo-Web-Entorno-Cliente/Tema1-Int"></td>
+        <td align="left"><a href="Desarrollo-Web-Entorno-Cliente/Tema1-IntroduccionJS">Tema 1</td>
         <td>Introduccion a JavaScript</td>
     </tr>
     <tr>
