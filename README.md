@@ -7,10 +7,10 @@
     </tr>
     <tr>
         <td align="left">Tema 1</td>
-        <td>JavaScript</td>
+        <td>Introduccion a JavaScript</td>
     </tr>
     <tr>
         <td align="left">Tema 2</td>
-        <td align="left"></td>
+        <td align="left">Clases en JavaScript</td>
     </tr>
 </table>
