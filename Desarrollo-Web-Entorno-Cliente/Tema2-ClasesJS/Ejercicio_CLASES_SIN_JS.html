@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Ejercicio/Ejemplo CLASES en Javascript</title>
+
+	<style type="text/css">
+		#salida {
+			margin-left: 4%;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		//  Creamos la Clase Punto:
+		class Punto {
+			constructor(f = 0, c = 0) {
+				this.y = f;
+				this.x = c;
+			}  //  constructor
+
+			//  Métodos:
+			mostrar() {
+				return "(" + this.x + ", " + this.y + ")";
+			}
+		}  //  Punto
+
+		//  Creamos la clase Rectangulo:
+		class Rectangulo {
+
+			constructor(x = 0, y = 0, x1 = 0, y1 = 0) {
+
+				if (x instanceof Punto) {
+
+					this.punto1 = new Punto(x.x, x.y);
+					this.punto2 = new Punto(y, x1);
+
+				} else if (x instanceof Punto && y instanceof Punto) {
+
+					this.punto1 = new Punto(x.x, x.y);
+
+					this.punto2 = new Punto(y.x, y.y);
+
+				} else {
+
+					this.punto1 = new Punto(x, y);
+					this.punto2 = new Punto(x1, y1);
+
+				}
+			}
+
+		}
+
+		//  < EL EJERCICIO ES CREAR LA CLASE Rectangulo >
+
+
+
+		//  Creamos la clase Cubo:
+
+		//  < EL EJERCICIO ES CREAR LA CLASE Cubo >
+
+
+
+
+
+		//  Utilizamos las clases anteriormente definidas:
+		function probar(salida) {
+
+			var sal = "<p> Creamos dos Puntos p1 y p2: <br>";
+			var p1 = new Punto(11, 15);
+			var p2 = new Punto(26, 42);
+
+			sal += "p1 = " + p1.mostrar() + "<br/>";
+			sal += "p2 = " + p2.mostrar() + "</p>";
+
+			sal += "<p>Creamos dos Rectangulos r1 y r2: <br>";
+
+			var r1 = new Rectangulo(5, 7, 9, 11);
+			var r2 = new Rectangulo(p1, p2);
+
+			sal += "r1 = " + r1.mostrar() + "<br>";
+			sal += "r2 = " + r2.mostrar() + "<br> </p>";
+
+			sal += "<p>Perímetro r1 = " + r1.Perimetro() + "<br>";
+			sal += "Perímetro r2 = " + r2.Perimetro() + "<br>";
+
+			sal += "Área c1 = " + r1.Area() + "<br>";
+			sal += "Área c2 = " + r2.Area() + "<br> </p>";
+
+
+			sal += "<p>Creamos dos Cubos: cubo1 y cubo2: <br>";
+			var cubo1 = new Cubo(r1, 10);
+			var cubo2 = new Cubo(r2, 15);
+
+			sal += "cubo1 = " + cubo1.mostrar() + "<br>";
+			sal += "cubo2 = " + cubo2.mostrar() + "<br>";
+			sal += "Volumen cubo1 = " + cubo1.Volumen() + "<br>";
+			sal += "Volumen cubo2 = " + cubo2.Volumen() + "<br> </p>";
+
+
+			document.getElementById(salida).innerHTML = sal;
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<br>
+	<h2>Ejercicio CLASES en Javascript</h2>
+	<h3>En este ejercicio se deben de crear las clases Rectangulo y Cubo, usando la clase Punto.</h3>
+	(un rectángulo se compone de 2 puntos y un cubo es un rectángulo con profundidad)
+	<h5>Además se deben crear los método para calcular el área y el volumen del rectangulo y el cubo.</h5>
+	<br />
+
+	<p>
+		<button onclick="probar('salida')">
+			Probar
+		</button>
+	</p>
+	<div id="salida">
+	</div>
+
+</body>
+
+</html>

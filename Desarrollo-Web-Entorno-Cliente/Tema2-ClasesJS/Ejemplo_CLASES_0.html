@@ -55,13 +55,19 @@
 			//  Métodos:
 			mostrar() {
 
-				return "Es un circulo con centro en el punto: " + this.punto.F_mostrar + " y  radio: " + this.radio;
+				return "circulo con centro en el punto: " + this.punto.F_mostrar() + " y  radio: " + this.radio;
 
 			}
 			LongCircunferencia() {
 
+				var longitudCircunferencia = 2 * Math.PI * this.radio;
+				return longitudCircunferencia;
+
 			}
 			Area() {
+
+				var areaCircunferencia = Math.PI * (this.radio * this.radio);
+				return areaCircunferencia;
 
 			}
 
@@ -69,13 +75,41 @@
 
 		class Cilindro {
 
+			constructor(f = 0, c = 0, r = 0, h = 0) {
 
+				if (f instanceof Circulo) {
+
+					this.circulo = f;
+					this.circulo = new Circulo(f.punto, f.radio);
+
+					this.altura = c;
+
+				} else if (f instanceof Punto && c instanceof Circulo) {
+
+					this.punto = new Punto(f);
+					this.circulo = new Circulo(punto.x, punto.y, c.radio);
+					this.altura = r
+
+				} else {
+
+					this.x = f;
+					this.y = c;
+					this.radio = r;
+					this.altura = h;
+
+				}
+
+			}
 
 			//  Métodos:
 			mostrar() {
 
+				return "Cilindro con base " + this.circulo.mostrar() + " y altura " + this.altura;
+
 			}
 			Volumen() {
+
+				return this.circulo.Area() * this.altura;
 
 			}
 
