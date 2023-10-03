@@ -11,13 +11,7 @@
     </tr>
     <tr>
         <td align="left"><a href="Desarrollo-Web-Entorno-Cliente/Tema2-ClasesJS/">Tema 2</a></td>
-        <td align="left">Clases en JavaScript
-        
-        <tr>
-            <td>hola</td>
-            <td>hola</td>
-        </tr>
-        </td>
+        <td align="left">Clases en JavaScript</td>
     </tr>
 </table>
 
