@@ -1,0 +1,19 @@
+#footer {
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    margin: auto;
+    background-color: rgb(219, 219, 219);
+    font-size: 32px;
+    border: 1px solid rgb(153, 153, 153);
+}
+
+#left {
+    position: relative;
+    float: left;
+}
+
+#right {
+    position: relative;
+    float: right;
+}
