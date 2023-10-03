@@ -31,16 +31,16 @@
 
 			constructor(x = 0, y = 0, x1 = 0, y1 = 0) {
 
-				if (x instanceof Punto) {
-
-					this.punto1 = new Punto(x.x, x.y);
-					this.punto2 = new Punto(y, x1);
-
-				} else if (x instanceof Punto && y instanceof Punto) {
+				if (x instanceof Punto && y instanceof Punto) {
 
 					this.punto1 = new Punto(x.x, x.y);
 
 					this.punto2 = new Punto(y.x, y.y);
+
+				} else if (x instanceof Punto) {
+
+					this.punto1 = new Punto(x.x, x.y);
+					this.punto2 = new Punto(y, x1);
 
 				} else {
 
@@ -50,13 +50,62 @@
 				}
 			}
 
+			base() {
+
+				var base = (this.punto2.x - this.punto1.x);
+
+				return base;
+
+			}
+
+			altura() {
+				var altura = (this.punto2.y - this.punto1.y);
+
+				return altura;
+			}
+
+			Perimetro() {
+				return 2 * (this.base() + this.altura());
+			}
+
+			Area() {
+				return this.base() * this.altura();
+			}
+
+			mostrar() {
+
+				return "Base " + this.base() + " y altura " + this.altura();
+
+			}
+
 		}
 
 		//  < EL EJERCICIO ES CREAR LA CLASE Rectangulo >
 
 
-
 		//  Creamos la clase Cubo:
+
+		class Cubo {
+
+			constructor(r = 0, h = 0) {
+
+				if (r instanceof Rectangulo) {
+
+					this.rectangulo = r;
+					this.altura = h;
+				}
+			}
+
+			mostrar() {
+
+				return "Es un cubo formado por un rectangulo de base " + this.rectangulo.base() + ", lado " + this.rectangulo.altura() + ", y de altura " + this.altura;
+			}
+
+			Volumen() {
+
+				return (this.rectangulo.base() * this.rectangulo.altura() * this.altura);
+			}
+		}
 
 		//  < EL EJERCICIO ES CREAR LA CLASE Cubo >
 
