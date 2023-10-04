@@ -8,7 +8,15 @@ public class Client {
         this.service = service;
     }
 
+    public Client() {
+
+    }
+
     public void Saludar(){
         System.out.println("Hola, "+service.getName());
+    }
+
+    public void setService(Service service) {
+        this.service = service;
     }
 }
