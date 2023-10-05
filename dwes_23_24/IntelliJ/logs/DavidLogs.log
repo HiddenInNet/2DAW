@@ -1,0 +1,28 @@
+2023-10-05 10:28:37 INFO  Main:11 - Antes de invocar a sumar
+2023-10-05 10:28:37 INFO  Misc:10 - Iniciando sumar
+2023-10-05 10:28:37 INFO  Misc:12 - Error al sumar
+2023-10-05 10:28:37 INFO  Main:14 - Antes de invocar a restar
+2023-10-05 10:28:37 INFO  Misc:10 - Iniciando sumar
+2023-10-05 10:28:37 INFO  Misc:12 - Error al sumar
+2023-10-05 10:28:37 INFO  Main:17 - Despues de realizar todo
+2023-10-05 10:29:15 INFO  Main:11 - Antes de invocar a sumar
+2023-10-05 10:29:15 INFO  Misc:10 - Iniciando sumar
+2023-10-05 10:29:15 ERROR Misc:12 - Error al sumar
+2023-10-05 10:29:15 INFO  Main:14 - Antes de invocar a restar
+2023-10-05 10:29:15 INFO  Misc:10 - Iniciando sumar
+2023-10-05 10:29:15 ERROR Misc:12 - Error al sumar
+2023-10-05 10:29:15 INFO  Main:17 - Despues de realizar todo
+2023-10-05 10:29:39 INFO  Main:11 - Antes de invocar a sumar
+2023-10-05 10:29:39 INFO  Misc:10 - Iniciando sumar
+2023-10-05 10:29:39 ERROR Misc:12 - Error al sumar
+2023-10-05 10:29:39 INFO  Main:14 - Antes de invocar a restar
+2023-10-05 10:29:39 INFO  Misc:17 - Iniciando restar
+2023-10-05 10:29:39 INFO  Misc:19 - Operacion restar realizada correctamente
+2023-10-05 10:29:39 INFO  Main:17 - Despues de realizar todo
+2023-10-05 10:41:06 INFO  Main:11 - Antes de invocar a sumar
+2023-10-05 10:41:06 INFO  Misc:10 - Iniciando sumar
+2023-10-05 10:41:06 ERROR Misc:12 - Error al sumar
+2023-10-05 10:41:06 INFO  Main:14 - Antes de invocar a restar
+2023-10-05 10:41:06 INFO  Misc:17 - Iniciando restar
+2023-10-05 10:41:06 INFO  Misc:19 - Operacion restar realizada correctamente
+2023-10-05 10:41:06 INFO  Main:17 - Despues de realizar todo
