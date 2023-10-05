@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limitar Caracteres</title>
+    <link rel="stylesheet" href="limitarCaracteres.js">
+</head>
+
+<script>
+
+    var letrasMaximo = 10
+
+    function limite() {
+        var elemento = document.getElementById("texto")
+
+        elemento.onkeyup = function () {
+            document.getElementById("resta").innerText = letrasMaximo - elemento.value.length
+        }
+        return elemento.value.length <= letrasMaximo
+    }
+
+    window.onload = function () {
+        document.getElementById("resta").innerText = letrasMaximo
+        document.getElementById("texto").onkeypress = limite
+    }
+
+</script>
+
+
+<body>
+    <form>
+        <label>Escribe Texto: </label>
+        <textarea id="texto"></textarea><br><br>
+        <label>Quedan: <span id="resta"></span> caracteres.</label>
+    </form>
+</body>
+
+</html>
