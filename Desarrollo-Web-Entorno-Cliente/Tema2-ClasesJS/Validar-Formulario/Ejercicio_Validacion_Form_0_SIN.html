@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Validar Formularios</title>
+	<style type="text/css">
+		span {
+			color: red;
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+		}
+	</style>
+	<!-- <script src="https://educacionadistancia.juntadeandalucia.es/centros/sevilla/pluginfile.php/975153/mod_folder/content/0/Utilidades.js"></script> -->
+	<script>
+
+		function validar() {
+
+			// Validar Nombre
+
+			if (document.getElementById("nombre").value.length < 2) {
+
+				document.getElementById("info_nombre").innerText = "Minimo requerido de 2 letras";
+				return false;
+			} else {
+				document.getElementById("info_nombre").innerText = "Okey";
+			}
+
+
+			// Validar DNI 
+
+			let valor = document.getElementById("dni").value;
+
+			var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+
+			if (!(/^\d{8}[A-Z]$/.test(valor)) || valor.charAt(8) != letras[(valor.substring(0, 8)) % 23]) {
+				document.getElementById("info_dni").innerText = "DNI incorrecto";
+				return false;
+			} else {
+				document.getElementById("info_dni").innerText = "Okey";
+			}
+
+			// Validar Sexo
+
+			valor = document.getElementById("sexo").value;
+
+			if (valor == "") {
+				document.getElementById("info_sexo").innerText = "Seleccione algun valor";
+				return false;
+			} else {
+				document.getElementById("info_sexo").innerText = "Okey";
+			}
+
+			// Validar sugerencia
+
+			valor = document.getElementById("sugerencia").value;
+
+			if (valor == "") {
+				document.getElementById("info_sugerencia").innerText = "Escriba una sugerencia";
+				return false;
+			}
+		}
+
+
+		window.onload = function () {
+			document.getElementById("formulario_1").onsubmit = validar;
+		}
+
+	</script>
+</head>
+
+<body>
+
+	<h1>Ejercicio Validación de Formularios</h1>
+	<form id="formulario_1">
+		<p>
+		<h3>Formulario de Registro:</h3>
+		<label for="nombre">Nombre: </label>
+		<input type="text" name="nombre" id="nombre" maxlength="25" size="15" autofocus />
+		<span id="info_nombre"></span>
+		<div>(Mínimo 2 letras)</div>
+		<br><br>
+
+		<label for="dni">NIF: </label>
+		<input type="text" name="dni" id="dni" maxlength="9" size="9" />
+		<span id="info_dni"></span>
+		<br><br><br>
+
+		<label>Sexo: </label>
+		<select id="sexo">
+			<option value="">Selecciona una opción</option>
+			<option value="F">Femenino</option>
+			<option value="M">Masculino</option>
+			<option value="Y">Ya quisiera yo</option>
+		</select>
+		<span id="info_sexo"></span>
+
+		<br><br><br>
+		<label for="sugerencia">Alguna sugerencia: </label>
+		<textarea id="sugerencia" name="sugerencia"></textarea>
+		<span id="info_sugerencia"></span>
+		<br><br>
+		</p>
+		<p><b>Todos los campos son obligatorios.</b></p>
+		<br>
+		<p>
+			<input type="submit" value="ENVIAR">
+			<br><br>
+			<input type="reset" value="Limpiar">
+
+		</p>
+	</form>
+</body>
+
+</html>
