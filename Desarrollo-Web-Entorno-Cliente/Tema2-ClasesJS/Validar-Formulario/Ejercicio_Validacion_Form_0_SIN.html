@@ -65,21 +65,20 @@
 			console.log(evento);
 			let c = evento.charCode;
 
+			//				minusculas					mayusculas				espacio
 			return (((c >= 65) && (c <= 90)) || ((c >= 97) && (c <= 122)) || (c == 32))
 		}
 
 		function mayusculas() {
 
-			this.value = this.value.toUpperCase();
+			this.value = this.value.toUpperCase();		// this	=> document.getElementById("nombre");		Hace referencia al evento 
 		}
 
 
 		window.onload = function () {
-			document.getElementById("formulario_1").onsubmit = validar;
-
-			document.getElementById("nombre").onkeypress = soloLetras;
-
-			document.getElementById("nombre").onkeyup = mayusculas;
+			document.getElementById("formulario_1").onsubmit = validar;		// Llama a la funcion validar()
+			document.getElementById("nombre").onkeypress = soloLetras;		// Llama a la funcion soloLetras()
+			document.getElementById("nombre").onkeyup = mayusculas;			// Llama a la funcion mayusculas()
 		}
 
 	</script>
