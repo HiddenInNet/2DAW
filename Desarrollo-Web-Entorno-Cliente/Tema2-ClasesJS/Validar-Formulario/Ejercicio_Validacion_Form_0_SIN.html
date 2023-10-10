@@ -47,6 +47,7 @@
 				return false;
 			} else {
 				document.getElementById("info_sexo").innerText = "Okey";
+				return true;
 			}
 
 			// Validar sugerencia
@@ -59,9 +60,26 @@
 			}
 		}
 
+		function soloLetras(evento) {
+
+			console.log(evento);
+			let c = evento.charCode;
+
+			return (((c >= 65) && (c <= 90)) || ((c >= 97) && (c <= 122)) || (c == 32))
+		}
+
+		function mayusculas() {
+
+			this.value = this.value.toUpperCase();
+		}
+
 
 		window.onload = function () {
 			document.getElementById("formulario_1").onsubmit = validar;
+
+			document.getElementById("nombre").onkeypress = soloLetras;
+
+			document.getElementById("nombre").onkeyup = mayusculas;
 		}
 
 	</script>
