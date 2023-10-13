@@ -1,0 +1,19 @@
+.link {
+    display: flow-root;
+    font-size: 30px;
+}
+
+#comprimida {
+    background-image: url(../images/images/WinXPSetV4_Icon_65.ico);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-left: 50px;
+}
+
+#guardar {
+    background-image: url(../images/images/84.ICO);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-left: 50px;
+    font-size: 30px;
+}
