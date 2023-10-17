@@ -1,0 +1,12 @@
+#galeria {
+    /* En el navegador Internet Explorer versión 6 y anteriores no funciona la
+propiedad "max-width" */
+    max-width: 650px;
+}
+
+#galeria img {
+    float: left;
+    margin: 1em;
+    padding: .5em;
+    border: 1px solid #CCC;
+}
