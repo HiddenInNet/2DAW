@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var maximoCaracteres = 25;
+
+        function limita() {
+            var elemento = document.getElementById("texto");
+            elemento.onkeyup = function () {
+                document.getElementById("resta").innerHTML = maximoCaracteres - elemento.value.length;
+            }
+            return elemento.value.length < maximoCaracteres;
+        }
+
+        window.onload = function () {
+            document.getElementById("resta").innerHTML = maximoCaracteres;
+            document.getElementById("texto").onkeypress = limita;
+        }
+
+    </script>
+</head>
+
+<body>
+    <form>
+        <label>Escribe texto: </label><br>
+        <textarea id="texto"></textarea><br>
+        <label>Quedan <span id="resta"></span> caracteres</label>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Ejercicio Tablas. CREAR TABLAS V3</title>
+
+	<script type="text/javascript">
+
+		function Saluda(f, c) {
+			alert("has pulsado sobre la fila: " + f + " y la columna: " + c);
+		}
+
+
+		function Generar_Tabla() {
+			//  Generamos la tabla dinámicamente y la mentemos en el div "tabla".
+
+			//  Recogemos el número de filas y columnas:
+			var ifila = document.getElementById("nfilas").value;
+			var icol = document.getElementById("ncolumnas").value;
+
+			// Crea la tabla (un elemento <table>) y el cuerpo (un elemento <tbody>):
+			var tabla = document.createElement("table");
+
+			var fila, columna, texto;
+
+			//  Creamos la cabecera:
+			var cabecera = document.createElement("thead");
+
+			//  Añadimos la cabecera a la tabla (esta vez lo hacemos antes de meterle las columnas):
+			tabla.appendChild(cabecera);
+
+			//  Hacemos que la primera fila sea la cabecera:
+			for (var c = 0; c < icol; c++) {
+				// Creamos un elemento <td> y un nodo de texto:
+				columna = document.createElement("td");
+				texto = document.createTextNode("COLUMNA " + c);
+
+				//  Añadir el texto a la columna:
+				columna.appendChild(texto);
+
+				//  Añadir la columna a la cabecera:
+				cabecera.appendChild(columna);
+			}
+
+			//  Vamos a crear el contenido de la tabla, las filas y las columnas:
+
+			//  Creamos el cuerpo de la tabla: tbody:
+			var cuerpo = document.createElement("tbody");
+
+			for (var f = 1; f < ifila; f++) {
+
+				//  Creamos las filas (elementos <tr>):
+				fila = document.createElement("tr");
+
+				//  Creamos las columnas (elementos <td>):
+				for (var c = 0; c < icol; c++) {
+					// Creamos un elemento <td> y un nodo de texto:
+					columna = document.createElement("td");
+
+					//  AÑADIMOS EL EVENTO (onclick) A LA CELDA:
+					//  Usamos una clausura:
+					function asigna(_f, _c) {
+						columna.onclick = function () {
+							Saluda(_f, _c);
+						}
+					}
+					asigna(f, c);
+
+					//  Lo mismo pero con una función anónima:
+					/*
+						(function(_f, _c){
+							columna.onclick = function(){
+								Saluda(_f, _c);
+							}
+						})(f, c);
+				*/
+
+
+					texto = document.createTextNode("Fila " + f + ", Columna " + c);
+
+					//  Añadir el texto a la columna:
+					columna.appendChild(texto);
+
+					//  Añadir la columna a la fila:
+					fila.appendChild(columna);
+
+				}
+
+				//  Agregamos la fila al cuerpo de la tabla:
+				cuerpo.appendChild(fila);
+			}
+
+			//  Agregamos el cuerpo de la tabla a la tabla:
+			tabla.appendChild(cuerpo);
+
+			//  Le ponemos un borde a la tabla:
+			tabla.setAttribute("border", "1");
+
+			//  Agregamos la tabla al div "tabla":
+			var divtabla = document.getElementById("tabla");
+			divtabla.innerHTML = "";
+			divtabla.appendChild(tabla);
+
+		}
+
+		window.onload = function () {
+			document.getElementById("btnGenerar").onclick = Generar_Tabla;
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<br>
+
+	<h2>Ejercicio Tablas. CREAR TABLAS V4</h2>
+	<h2>USAMOS UNA CLAUSURA</h2>
+
+	<h3>Introducir el código javascript necesario, para que al pulsar sobre
+		el botón, se cree una tabla con un número fijo de filas y columnas. </h3>
+
+	<h3>Ahora generamos la tabla con formato: "thead" y "tbody"</h3>
+
+	<h3>Añadimos un evento (onclick en este caso) a cada una de las celdas de la tabla</h3>
+
+	<br />
+	<form>
+		<p>
+			<label for="nfilas">Introduce el número de filas:</label>
+			<input type="number" id="nfilas" value="4" min="1" max="1000" />
+			<br />
+			<label for="ncolumnas">Introduce el número de columnas:</label>
+			<input type="number" id="ncolumnas" value="5" min="1" max="1000" />
+		</p>
+		<p>
+			<button type="button" id="btnGenerar">
+				Generar Tabla
+			</button>
+		</p>
+	</form>
+	<br>
+
+	<div id="tabla">
+		Aquí se colocará la tabla que se cree dinámicamente con javascript.
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Ejercicio/Ejemplo HERENCIA en Javascript</title>
+
+	<style type="text/css">
+		#salida {
+			margin-left: 4%;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		// Novedades ECMAScript 6.
+
+
+		//  Creamos la Clase Punto:
+		class Punto {
+			//  Creamos la Clase Punto:
+			constructor(f = 0, c = 0) { 
+				if (f instanceof Punto) {	//parámetros: punto (esto sería como un constructor de copia)
+					this.y = f.y;
+					this.x = f.x;
+				} else {					//parámetros: coord X, coord Y
+					this.y = c;
+					this.x = f;
+				}
+			}  //  constructor
+
+			//  Métodos:
+			mostrarP() {
+				return this.x + ", " + this.y;
+			}
+			F_mostrar() {
+				return "(" + this.x + ", " + this.y + ")";
+			}
+		}  //  Punto
+
+
+		class Circulo extends Punto {
+			constructor(f = 0, c = 0, r = 0) {
+				super(f, c);
+				if (f instanceof Circulo) {		//parámetros: circulo (esto sería como un constructor de copia)
+					this.radio = f.radio;
+				} else if (f instanceof Punto) {//parámetros: punto, radio
+					this.radio = c;
+				} else {						//parámetros: coord X, coord Y, radio
+					this.radio = r;
+				}
+			}
+			//  constructor
+
+			//  Métodos:
+
+			//  Definimos (y NO REdefinimos) el método mostrar:
+			mostrarC() {
+				return this.mostrarP() + ", " + this.radio;
+			}
+
+			//  REDEFINIMOS el método F_mostrar:
+			F_mostrar() {
+
+				return "(" + this.x + ", " + this.y + ", " + this.radio + ") (circulo)-> " + super.F_mostrar();
+			}
+
+			LongCircunferencia() {
+				return (2 * Math.PI * this.radio);
+			}
+
+			Area() {
+				return (Math.PI * Math.pow(this.radio, 2));
+			}
+		}  //  Circulo
+
+
+		class Cilindro extends Circulo {
+
+			//  METE AQUÍ TU CÓDIGO
+			constructor(f = 0, c = 0, r = 0, h = 0) {
+				super(f, c, r);
+				if (f instanceof Cilindro) {		//parámetros: cilindro (esto sería como un constructor de copia)
+					this.altura = f.altura;
+				} else if (f instanceof Circulo) {	//parámetros: circulo, altura
+					this.altura = c;
+				} else if (f instanceof Punto) {	//parametros: punto, radio, altura
+					this.altura = r;
+				} else {							//parámetros: coord X, coord Y, radio, altura
+					this.altura = h;
+				}
+			}
+
+			mostrarCI() {
+				return this.mostrarC() + ", " + this.altura;
+			}
+
+			Volumen() {
+				return (this.Area() * this.altura);
+			}
+
+		}  //  Cilindro
+
+
+
+		//  Utilizamos las clases anteriormente definidas:
+		function probar(salida) {
+
+			var sal = "<p> Creamos un Punto p: <br>";
+			var p1 = new Punto(11, 15);
+
+			sal += "p1 = " + p1.mostrarP() + "<br/>";
+			sal += "(con formato) p1 = " + p1.F_mostrar() + "<br/>";
+			sal += "ahora creamos otro punto (p2) a partir del anterior, lo modificamos e imprimimos los dos: <br/>";
+			var p2 = new Punto(p1);
+			p1.x = 69;
+			sal += "p1 = " + p1.mostrarP() + "<br/>";
+			sal += "p2 = " + p2.mostrarP() + "</p>";
+
+			sal += "<p>Creamos dos Circulos c1 y c2: <br>";
+
+			var c1 = new Circulo(26, 42, 8);
+			var c2 = new Circulo(p2, 4);
+
+			var c3 = new Circulo(c1);
+
+			sal += "c1 = " + c1.mostrarC() + "<br>";
+			sal += "(con formato) c1 = " + c1.F_mostrar() + "<br>";
+
+			sal += "el punto de c1 es: " + c1.mostrarP() + "<br>";
+
+			sal += "c2 = " + c2.mostrarC() + "<br> </p>";
+
+			sal += "Longitud Circunferencia c1 = " + c1.LongCircunferencia() + "<br>";
+			sal += "Longitud Circunferencia c2 = " + c2.LongCircunferencia() + "<br>";
+
+			sal += "Área c1 = " + c1.Area() + "<br>";
+			sal += "Área c2 = " + c2.Area() + "<br> </p>";
+
+			var cilindro1 = new Cilindro(c1, 10);
+			var cilindro2 = new Cilindro(c2, 15);
+
+			sal += "<p>Creamos dos Cilindros cilindro1 y cilindro1: <br>";
+			sal += "cilindro1 = " + cilindro1.mostrarCI() + "<br>";
+			sal += "cilindro2 = " + cilindro2.mostrarCI() + "<br>";
+
+			sal += "Volumen cilindro1 = " + cilindro1.Volumen() + "<br>";
+			sal += "Volumen cilindro2 = " + cilindro2.Volumen() + "<br> </p>";
+
+			document.getElementById(salida).innerHTML = sal;
+		}
+
+	</script>
+</head>
+
+<body>
+	<br>
+	<h2>Ejercicio/Ejemplo HERENCIA en Javascript</h2>
+	<h3>Esto es un ejemplo de como crear e instanciar clases en javascript</h3>
+	<h5>En Javascript, cualquier función puede ser una clase.</h5>
+
+	<p>
+		<button onclick="probar('salida')">
+			Probar
+		</button>
+	</p>
+	<div id="salida"> </div>
+
+</body>
+
+</html>

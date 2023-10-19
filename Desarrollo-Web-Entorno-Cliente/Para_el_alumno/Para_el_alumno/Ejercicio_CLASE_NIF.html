@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Ejercicio CLASES en Javascript</title>
+
+	<style type="text/css">
+		#salida {
+			margin-left: 4%;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		//  Creamos la Clase nif:
+
+		class nif {
+
+			/*
+				dni (String)
+				letra (String)
+				letraCorrecta (String)
+				valido (Boolean)
+			*/
+
+			constructor(_dni = "", _letra = "") {
+
+				if (_dni instanceof nif) {	//parámetros: _dni (esto sería como un constructor de copia)
+
+					this.dni = _dni.substring(0, 8);
+					this.letra = _dni.charAt(8);
+					this.valido = false;
+
+					if (validarNIF(this.dni + this.letra)) {
+						this.valido = true;
+					} else {
+						this.valido = false;
+					}
+
+					this.letraCorrecta = letraCorrecta(this.dni + this.letra);
+
+				} else {					//parámetros: _dni y _letra 
+
+					this.dni = _dni;
+					this.letra = _letra;
+					this.valido = false;
+
+					if (validarNIF(this.dni + this.letra)) {
+						this.valido = true;
+					} else {
+						this.valido = false;
+					}
+
+					this.letraCorrecta = letraCorrecta(this.dni + this.letra);
+
+				}
+			}
+
+			// Método mostrarNIF
+			mostrarNIF() {
+
+				return "DNI: " + this.dni + this.letra;
+			}
+
+			// Método mostrar
+			mostrarNIF_Correcto() {
+
+				return "DNI correcto: " + this.dni + this.letraCorrecta;
+			}
+		}
+
+		// Valida el DNI
+		function validarNIF(dni) {
+			var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'];
+			if (dni.length != 9) {	// Longitud del NIF diferente a 9
+
+				return false;
+			}
+			if (dni.charAt(8).toUpperCase() != letras[(dni.substring(0, 8)) % 23]) {
+				//letra del DNI no valido
+				return false;
+			}
+			return true;
+		}
+
+		// Nos da la letra correcta
+		function letraCorrecta(dni) {
+
+			var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'];
+			let letraCorrecta = letras[(dni.substring(0, 8)) % 23];
+			console.log(letraCorrecta);
+
+			return letraCorrecta;
+		}
+
+		//  Utilizamos la clase anteriormente definida:
+		function probar() {
+			var sal = "<p> Creamos dos nif´s nif1, nif2, nif3: <br>";
+			sal += "<hr><br>";
+
+			var nif1 = new nif("12345678", "M");
+
+			var nif2 = new nif("69696969T");
+
+			var nif3 = new nif();
+
+			sal += "nif1 = " + nif1.mostrarNIF() + "<br/>";
+			sal += "nif1 valido = " + nif1.valido + "<br/>";
+			sal += "nif1 letraCorrecta = " + nif1.letraCorrecta + "<br/>";
+			sal += "nif1 (correcto) = " + nif1.mostrarNIF_Correcto() + "<br/>";
+
+			sal += "<hr><br>";
+
+			sal += "nif2 = " + nif2.mostrarNIF() + "<br/>";
+			sal += "nif2 valido = " + nif2.valido + "<br/>";
+			sal += "nif2 letraCorrecta = " + nif2.letraCorrecta + "<br/>";
+			sal += "nif2 (correcto) = " + nif2.mostrarNIF_Correcto() + "<br/>";
+
+			sal += "<hr><br>";
+
+			sal += "nif3 = " + nif3.mostrarNIF() + "<br/>";
+			sal += "nif3 valido = " + nif3.valido + "<br/>";
+			sal += "nif3 letraCorrecta = " + nif3.letraCorrecta + "<br/>";
+			sal += "nif3 (correcto) = " + nif3.mostrarNIF_Correcto() + "<br/>";
+
+			sal += "</p>";
+
+			document.getElementById("salida").innerHTML = sal;
+		}  //  probar
+
+		window.onload = function () {
+			document.getElementById("btnProbar").onclick = probar;
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<br>
+	<h2>Ejercicio CLASES en Javascript</h2>
+	<h3>Ejercicio crear la clase nif.</h3>
+	<p>
+		<button id="btnProbar">
+			Probar
+		</button>
+	</p>
+	<div id="salida">
+	</div>
+
+</body>
+
+</html>

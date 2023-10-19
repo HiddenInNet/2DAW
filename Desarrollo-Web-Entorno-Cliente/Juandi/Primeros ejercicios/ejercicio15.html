@@ -1,0 +1,94 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Ejercicio 15 - Informaci�n sobre eventos</title>
+	<style type="text/css">
+		body {
+			font-family: arial, helvetica;
+		}
+
+		#info {
+			width: 160px;
+			border: thin solid silver;
+			padding: .5em;
+			position: fixed;
+		}
+
+		#info h1 {
+			margin: 0;
+		}
+	</style>
+	<script>
+		var botonRaton = 0;
+		var espacioLeft = 0;
+		var espacioTop = 0;
+		function muestraInformacion(mensaje) {
+			document.getElementById("info").innerHTML = '<h1>' + mensaje[0] + '</h1>';
+			for (var i = 1; i < mensaje.length; i++) {
+				document.getElementById("info").innerHTML += '<p>' + mensaje[i] + '</p>';
+			}
+		}
+
+		function manejadorEventos(elEvento) {
+			var evento = elEvento || window.event;
+
+			switch (evento.type) {
+				case "mousemove":
+					if (botonRaton == 1) {
+
+						document.getElementById("info").style.left = (evento.clientX - espacioLeft) + "px";
+						document.getElementById("info").style.top = (evento.clientY - espacioTop) + "px";
+					}
+					var ar1 = new Array();
+					ar1[0] = "Raton";
+					ar1[1] = "Navegador [" + evento.clientX + ", " + evento.clientY + "]";
+					ar1[2] = "Pagina [" + evento.pageX + ", " + evento.pageY + "]";
+					ar1[3] = "Pantalla [" + evento.screenX + ", " + evento.screenY + "]";
+					document.getElementById("info").style.backgroundColor = "#FFFFFF";
+					muestraInformacion(ar1);
+					break;
+				case "keypress":
+					var ar2 = new Array();
+					ar2[0] = "Teclado";
+					ar2[1] = "Caracter [" + String.fromCharCode(evento.charCode) + "]";
+					ar2[2] = "Codigo [" + evento.charCode + "]";
+					document.getElementById("info").style.backgroundColor = "#CCE6FF";
+					muestraInformacion(ar2);
+					break;
+				case "click":
+					document.getElementById("info").style.backgroundColor = "#FFFFCC";
+					break;
+			}
+		}
+
+		window.onload = function () {
+			document.onmousemove = manejadorEventos;
+			document.onkeypress = manejadorEventos;
+			document.onclick = manejadorEventos;
+			document.getElementById("info").onmousedown =
+				function (elEvento) {
+					var evento = elEvento || window.event;
+					botonRaton = 1;
+					espacioLeft = evento.clientX - document.getElementById("info").style.left.split("px")[0];
+					espacioTop = evento.clientY - document.getElementById("info").style.top.split("px")[0];
+				};
+			document.getElementById("info").onmouseup =
+				function (elEvento) {
+					var evento = elEvento || window.event;
+					botonRaton = 0;
+				};
+		}
+
+	</script>
+</head>
+
+<body>
+	<div id="info"></div>
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+</html>
