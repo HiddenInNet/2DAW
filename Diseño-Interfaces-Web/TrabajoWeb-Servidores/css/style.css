@@ -1,0 +1,16 @@
+* {
+    /* Todos los elementos adquieren: */
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+div#main {
+    background-color: rgb(218, 251, 255);
+    width: 100vw;
+    height: 100vh;
+}
+
