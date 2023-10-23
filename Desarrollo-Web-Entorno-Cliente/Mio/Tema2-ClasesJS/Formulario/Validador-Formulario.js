@@ -3,7 +3,7 @@ function campoNombre(evento) {
 
 
     let soloLetras = soloLetrasFunc();
-    let mayusculas = mayusculasFunc();
+    evento.value = mayusculasFunc();
 
     function soloLetrasFunc() {
 
@@ -19,5 +19,4 @@ function campoNombre(evento) {
 
     }
 
-    
 }
