@@ -1,0 +1,42 @@
+ul {
+    float: left;
+    width: 100%;
+    border: 1px solid white;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+
+li {
+    background-color: orangered;
+    float: left;
+    transition: .3s;
+}
+
+li:hover {
+    background-color: red;
+    transition: .3s;
+}
+
+ul li>ul {
+    display: none;
+}
+
+ul li:hover>ul {
+    display: block;
+}
+
+ul li a {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    color: white;
+    display: block;
+    padding: .5em;
+    text-decoration: none;
+}
+
+p {
+    float: left;
+    margin-top: 50px;
+}

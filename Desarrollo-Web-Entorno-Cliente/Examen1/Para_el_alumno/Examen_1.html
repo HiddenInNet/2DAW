@@ -68,15 +68,14 @@
 
     window.onload = function () {
 
-      document.getElementById("base").onkeydown = verificar;
-      document.getElementById("altura").onkeydown = verificar;
-      document.getElementById("profundidad").onkeydown = verificar;
-      document.getElementById("radio").onkeydown = verificar;
+      document.getElementById("base").onkeypress = verificar;
+      document.getElementById("altura").onkeypress = verificar;
+      document.getElementById("profundidad").onkeypress = verificar;
+      document.getElementById("radio").onkeypress = verificar;
 
       document.getElementById("a").onkeydown = verificarEcuacion;
       document.getElementById("b").onkeydown = verificarEcuacion;
       document.getElementById("c").onkeydown = verificarEcuacion;
-
 
       document.getElementById("btCalcular").onclick = calcular;
       document.getElementById("btSolEc").onclick = calcularEcuacion;
@@ -85,22 +84,17 @@
       //document.getElementById("btSolF_V2").onclick = calcularFracciones;
     }
 
-    /*
-      charcode 46 es la coma
-    */
-
-
     // Ejerccio 1
     function verificar(evento) {
 
-      console.log(evento);
+      let c = evento.charCode;
 
-      if ((evento.keyCode >= 48 && evento.keyCode <= 57) || evento.keyCode == 188 || evento.keyCode == 8) {
-        return true;
-      } else {
-        return false
+      if (c == 44) {
+        return (this.value.indexOf(",") == -1);   //  this --> hace referencia a document.getElementById("elemento")
       }
-
+      else {
+        return ((c >= 48) && (c <= 57));
+      }
     }
     //////////////////////////////////////////
 
