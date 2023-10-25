@@ -14,3 +14,25 @@ div#main {
     height: 100vh;
 }
 
+div#header {
+    background-color: blue;
+    width: 100vw;
+    height: 200px;
+}
+
+div#top-header,
+div#bottom-header {
+    width: 100%;
+    height: 50%;
+    background-color: rgb(143, 90, 20);
+}
+
+div#info {
+
+    display: grid;
+    place-items: center;
+    margin: auto;
+    width: 80%;
+    height: 500px;
+    background-color: #e6d7bd;
+}
