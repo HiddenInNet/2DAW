@@ -1,0 +1,8 @@
+Realizar el ejercicio indicado.
+
+Como se puede ver, el ejercicio se indica bastante claramente.
+
+Para separar las filas de inputs introducir un <br> tal y como se ve en 
+la imagen que he subido. 
+
+Cualquier duda me preguntáis. 
