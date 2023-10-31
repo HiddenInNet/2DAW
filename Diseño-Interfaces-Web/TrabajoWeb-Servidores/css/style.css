@@ -8,31 +8,63 @@
     vertical-align: baseline;
 }
 
-div#main {
-    background-color: rgb(218, 251, 255);
-    width: 100vw;
-    height: 100vh;
+body {
+    background-color: #e3e4e6;
+    width: 100%;
+    height: 100%;
 }
 
-div#header {
-    background-color: blue;
-    width: 100vw;
-    height: 200px;
+header {
+    background-image: url(../images/header.jpg);
+    background-repeat: repeat-x;
+    background-size: contain;
+    width: 100%;
+    height: 250px;
 }
 
 div#top-header,
 div#bottom-header {
     width: 100%;
     height: 50%;
-    background-color: rgb(143, 90, 20);
+}
+
+
+div#body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+nav {
+    float: left;
+    width: 200px;
+    height: 300px;
+    background-color: #ffffff;
+    box-shadow: 5px 6px 20px 0px black;
+    border: 1px solid black;
 }
 
 div#info {
+    width: 70%;
+    height: 100em;
+    background-color: #ffffff;
+    box-shadow: 5px 6px 20px 0px black;
+    border: 1px solid black;
+}
 
-    display: grid;
-    place-items: center;
-    margin: auto;
-    width: 80%;
-    height: 500px;
-    background-color: #e6d7bd;
+@media screen and (max-width: 900px) {
+
+    header {
+        height: 200px;
+    }
+
+    div#info {
+        width: 100%;
+    }
+
+    div#info,
+    nav {
+        box-shadow: none;
+    }
+
 }
