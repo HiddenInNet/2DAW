@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Plantilla</title>
+	<style type="text/css">
+		header {
+			height: 80px;
+			width: auto;
+			margin: auto;
+			border: 1px solid grey;
+		}
+
+		main {
+			display: flex;
+			border: 5px solid red;
+		}
+
+		section {
+			width: 90%;
+			margin: .4em 0;
+			padding: .2em;
+			border: 1px solid pink;
+		}
+
+		nav {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 15%;
+			padding: .2em;
+			margin: 7px;
+			border: 1px solid green;
+		}
+
+		div#menu {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+			background-color: rgb(255, 144, 144);
+		}
+
+		/* Opciones del NAV */
+
+		div#opciones {
+			margin: 10px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		div.opciones {
+			padding: 10px;
+		}
+
+		h1 {
+			font-size: 40px;
+		}
+
+		p {
+			font-size: 20px;
+		}
+
+		aside {
+			width: 15%;
+			margin: .4em;
+			padding: .2em;
+			border: 1px solid blue;
+		}
+
+		footer {
+			height: 50px;
+			width: auto;
+			margin: auto;
+			border: 1px solid grey;
+		}
+
+		p {
+			display: none;
+		}
+
+		input {
+			width: 100%;
+			background-color: transparent;
+			border: none;
+			outline: none;
+			box-shadow: 1px -1px 6px 2px black;
+		}
+
+		input:focus+p {
+
+			display: block;
+		}
+
+		input:focus {
+			border-bottom: 2px solid green;
+			border-right: 2px solid green;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h3>Cabecera</h3>
+	</header>
+
+	<main>
+
+		<nav>
+			<div id="menu">
+				<h1>MENU</h1>
+			</div>
+			<div class="container" id="opciones">
+				<div class="opciones" id="opcion1">
+					<input id="opcion1" value="Opcion 1" type="button" readonly>
+					<p>Texto opcion 1</p>
+				</div>
+				<div class="opciones">
+					<input value="Opcion 2" type="button" readonly>
+					<p>Texto opcion 2</p>
+				</div>
+				<div class="opciones">
+					<input value="Opcion 3" type="button" readonly>
+					<p>Texto opcion 3</p>
+				</div>
+				<div class="opciones">
+					<input value="Opcion 4" type="button" readonly>
+					<p>Texto opcion 4</p>
+				</div>
+				<div class="opciones">
+					<input value="Opcion 5" type="button" readonly>
+					<p>Texto opcion 5</p>
+				</div>
+
+			</div>
+		</nav>
+
+		<section>
+			<article>
+				<p>Artículo 1. Párrafo 1</p>
+				<p>Artículo 1. Párrafo 2</p>
+				<p>Artículo 1. Párrafo 3</p>
+			</article>
+			<article>
+				<p>Artículo 2. Párrafo 1</p>
+				<p>Artículo 3. Párrafo 2</p>
+				<p>Artículo 4. Párrafo 3</p>
+			</article>
+			<article>
+				<p>Artículo 3. Párrafo 1</p>
+				<p>Artículo 3. Párrafo 2</p>
+				<p>Artículo 3. Párrafo 3</p>
+			</article>
+		</section>
+
+		<aside>
+			<p>Esto es el lateral derecho. Para mostrar cosicas.</p>
+		</aside>
+
+	</main>
+
+	<footer>
+		<p>Este es el píe de página</p>
+	</footer>
+
+</body>
+
+</html>
