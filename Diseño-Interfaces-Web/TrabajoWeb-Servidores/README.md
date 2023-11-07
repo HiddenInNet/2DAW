@@ -9,18 +9,12 @@ con Java EE son:
 - WildFly
 - GlassFish
 
-## Recomendaciones mínimas de los servidores
-
-### Hardware
-
-| Servidor      | Memoria | CPU | Tipo de disco / Espacio / Velocidad |
-| ------------- | ------- | --- | ----------------------------------- |
-| Apache Tomcat |
-
-### Software (necesario)
-
-| Servidor      | Memoria | CPU | Tipo de disco / Espacio / Velocidad |
-| ------------- | ------- | --- | ----------------------------------- |
-| Apache Tomcat |
+## Requisitos
 
 `Deberá incluir toda la información necesaria para encontrar la dirección de descarga del servidor, instalarlo (en el sistema operativo elegido para ese servidor), y realizar las configuraciones necesarias para hacer que dicho servidor ejecute código java.`
+
+| Servidor      | Dirección de descarga                       | Página principal          | Instalación / SO | Configuraciones |
+| ------------- | ------------------------------------------- | ------------------------- | ---------------- | --------------- |
+| Apache Tomcat | https://tomcat.apache.org/whichversion.html | https://tomcat.apache.org | x                | x               |
+| WildFly       |                                             |                           | 🎇               | x               |
+| GlassFish     |                                             |                           | x                | x               |
