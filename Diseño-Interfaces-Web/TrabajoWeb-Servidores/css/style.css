@@ -1,70 +1,104 @@
 * {
-    /* Todos los elementos adquieren: */
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+  /* Todos los elementos adquieren: */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 body {
-    background-color: #e3e4e6;
-    width: 100%;
-    height: 100%;
+  background-color: #e3e4e6;
+  width: 100%;
+  height: 100%;
 }
 
+/* ------------ [ Header ] ------------ */
+
 header {
-    background-image: url(../images/header.jpg);
-    background-repeat: repeat-x;
-    background-size: contain;
-    width: 100%;
-    height: 250px;
+  background-image: url(../images/header.jpg);
+  background-repeat: repeat-x;
+  background-size: contain;
+  width: 100%;
+  height: 250px;
 }
 
 div#top-header,
 div#bottom-header {
-    width: 100%;
-    height: 50%;
+  width: 100%;
+  height: 50%;
 }
 
+div#top-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+div#logo {
+  background-color: aqua;
+}
+
+/* ------------ [ Sections ] ------------ */
 
 div#body {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 50px 0 50px 0;
 }
+
+/* ------------ [ NAV ] ------------ */
 
 nav {
-    float: left;
-    width: 200px;
-    height: 300px;
-    background-color: #ffffff;
-    box-shadow: 5px 6px 20px 0px black;
-    border: 1px solid black;
+  position: sticky;
+  top: 10%;
+  float: left;
+  width: 200px;
+  height: 300px;
+  background-color: #ffffff;
+  box-shadow: 5px 6px 20px 0px black;
+  border: 1px solid black;
 }
+
+/* ------------ [ Info ] ------------ */
 
 div#info {
-    width: 70%;
-    height: 100em;
-    background-color: #ffffff;
-    box-shadow: 5px 6px 20px 0px black;
-    border: 1px solid black;
+  width: 70%;
+  height: 100em;
+  background-color: #ffffff;
+  box-shadow: 5px 6px 20px 0px black;
+  border: 1px solid black;
 }
 
+/* ------------ [ Footer ] ------------ */
+
+footer {
+  height: 200px;
+  width: 100%;
+  background-color: black;
+}
+
+/* ------------ [ Conditionals ] ------------ */
+
 @media screen and (max-width: 900px) {
+  header {
+    height: 200px;
+  }
 
-    header {
-        height: 200px;
-    }
+  div#info {
+    width: 100%;
+  }
 
-    div#info {
-        width: 100%;
-    }
+  div#info,
+  nav {
+    box-shadow: none;
+  }
+}
 
-    div#info,
-    nav {
-        box-shadow: none;
-    }
-
+@media screen and (max-width: 400px) {
+  header {
+    height: 100px;
+  }
 }
