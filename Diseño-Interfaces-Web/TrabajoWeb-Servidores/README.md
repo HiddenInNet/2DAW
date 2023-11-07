@@ -17,7 +17,7 @@ con Java EE son:
 
 ## Requisitos
 
-`Deberá incluir toda la información necesaria para encontrar la dirección de descarga del servidor, instalarlo (en el sistema operativo elegido para ese servidor), y realizar las configuraciones necesarias para hacer que dicho servidor ejecute código java.`
+> Deberá incluir toda la información necesaria para encontrar la dirección de descarga del servidor, instalarlo (en el sistema operativo elegido para ese servidor), y realizar las configuraciones necesarias para hacer que dicho servidor ejecute código java.
 
 | Servidor      | Dirección de descarga                       | Página principal                    | Instalación / SO | Configuraciones |
 | ------------- | ------------------------------------------- | ----------------------------------- | ---------------- | --------------- |
