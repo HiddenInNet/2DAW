@@ -1,0 +1,21 @@
+Se trata de, haciendo uso de la API pública de Stra Wars, hacer un ejercicio
+el cual pinte la tabla de los personajes de la saga, tal y como se indica
+en la imagen Ejemplo_Ejercicio.PNG
+
+Para ello se suministra el fichero: Ejemplo_api_Star_Wars_SIN.html 
+
+Esta es la URL de la API de Star Wars:
+
+https://swapi.dev/
+
+
+Después de pintar la tabla como se muestra en la imagen, añadir la funcionalidad
+para que, cuando el usuario haga click en el nombre del planeta (columna Homeworld)
+se pidan a la API los datos de ese planeta y se pinten el lugar correspondiente.
+
+
+Después de la mencionada funcionalidad. Añadir una navegación (mediante botones)
+para poder mostrar en la trabla el resto de personajes que ofrece la API.
+
+Resto de funcionalidades serán indicadas en clase por el profesor.
+
