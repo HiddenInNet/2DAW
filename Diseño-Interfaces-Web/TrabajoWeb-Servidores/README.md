@@ -13,8 +13,8 @@ con Java EE son:
 
 `Deberá incluir toda la información necesaria para encontrar la dirección de descarga del servidor, instalarlo (en el sistema operativo elegido para ese servidor), y realizar las configuraciones necesarias para hacer que dicho servidor ejecute código java.`
 
-| Servidor      | Dirección de descarga                       | Página principal          | Instalación / SO | Configuraciones |
-| ------------- | ------------------------------------------- | ------------------------- | ---------------- | --------------- |
-| Apache Tomcat | https://tomcat.apache.org/whichversion.html | https://tomcat.apache.org | x                | x               |
-| WildFly       |                                             |                           | 🎇               | x               |
-| GlassFish     |                                             |                           | x                | x               |
+| Servidor      | Dirección de descarga                       | Página principal                    | Instalación / SO | Configuraciones |
+| ------------- | ------------------------------------------- | ----------------------------------- | ---------------- | --------------- |
+| Apache Tomcat | https://tomcat.apache.org/whichversion.html | https://tomcat.apache.org           | ❌               | ❌              |
+| WildFly       | https://www.wildfly.org/downloads/          | https://www.wildfly.org             | ❌               | ❌              |
+| GlassFish     | https://glassfish.org                       | https://glassfish.org/download.html | ❌               | ❌              |
