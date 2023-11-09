@@ -1,15 +1,73 @@
 * {
-    margin: 0px;
+  margin: 0px;
 }
 
 header {
-    width: 100%;
-    height: 150px;
-    background-color: aquamarine;
+  width: 100%;
+  height: 150px;
 
-    #header-top,
-    #header-bottom {
-        width: 100%;
-        height: 50%;
+  #header-top,
+  #header-bottom {
+    width: 100%;
+    height: 50%;
+    background-color: rgb(37, 37, 66);
+  }
+}
+
+main {
+  width: 100%;
+  height: 60em;
+  background-color: rgb(153, 188, 246);
+
+  #main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+
+    #cantidad {
+      display: flex;
+      flex-direction: row;
+      width: 30%;
+      height: 20em;
+
+      #numero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 50%;
+        background-color: rgb(153, 188, 246);
+
+        #cifra {
+          border: none;
+          text-align: center;
+          font-size: 4em;
+          width: 40%;
+          height: 40%;
+          border-bottom: 3px solid black;
+          background-color: rgb(164, 231, 251);
+          border-radius: 10px;
+          outline: none;
+        }
+
+        #cifra:focus {
+          border: none;
+        }
+      }
+
+      #divisa {
+        height: 100%;
+        width: 50%;
+        background-color: rgb(153, 188, 246);
+      }
     }
+
+    #tabla {
+      width: 70%;
+      height: 20em;
+      /* height: fit-content; para que se ajuste segun el tamaño de la tabla */
+      background-color: brown;
+    }
+  }
 }

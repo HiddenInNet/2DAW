@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+<script>
+
+
+    window.onload = function () {
+        var peticion = new XMLHttpRequest();
+        var url = 'https://api.frankfurter.app/currencies';
+
+        peticion.open('GET', url, true);
+        peticion.send();
+
+        peticion.onreadystatechange = function () {
+            if (peticion.readyState == 4 && peticion.status == 200) {
+                var responseData = JSON.parse(peticion.responseText);
+
+                console.log(responseData);
+            }
+        };
+
+    }
+
+</script>
+
 <body>
     <!-- https://www.frankfurter.app/ -->
 
@@ -27,12 +49,19 @@
 
     <main>
         <div id="main">
-            <div id="cantidad"></div>
-            <div id="moneda"></div>
-        </div>
-        <div id="tabla">
-            <!-- Aqui ira la tabla con todos los valores referentes a la moneda indicada en .<div id="moneda">. -->
+            <div id="cantidad">
+                <div id="numero">
+                    <input type="number" id="cifra" required autofocus placeholder="0" />
+                </div>
+                <div id="divisa">
 
+                </div>
+            </div>
+
+            <div id="tabla">
+                <!-- Aqui ira la tabla con todos los valores referentes a la moneda indicada en .<div id="moneda">. -->
+
+            </div>
         </div>
     </main>
 
