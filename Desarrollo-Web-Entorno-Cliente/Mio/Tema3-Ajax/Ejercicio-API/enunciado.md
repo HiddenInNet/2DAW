@@ -21,3 +21,12 @@ Resumiendo, deberá tener, como mínimo, las siguientes peticiones AJAX:
 
 
 Se deja libertad al alumnado para escoger la API que desee, siempre que no sea la misma vista en clase (SWAPI) y las respuestas sean en JSON.
+
+---
+
+Useré una API lanzada por el Banco Central Europeo, la cual se encarga de llevar un registro 
+del valor de todas las monedas existentes junto a la fecha correspondiente.
+
+* [Documentación](https://www.frankfurter.app/docs/#deployment)
+
+
