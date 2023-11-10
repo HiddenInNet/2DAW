@@ -10,10 +10,9 @@
 
 <script>
 
+    function peticionAJAX(url) {
 
-    window.onload = function () {
         var peticion = new XMLHttpRequest();
-        var url = 'https://api.frankfurter.app/currencies';
 
         peticion.open('GET', url, true);
         peticion.send();
@@ -26,6 +25,36 @@
             }
         };
 
+    }
+
+    function validarNumero(event) {
+
+
+        // Reemplaza cualquier caracter que no sea un dígito o un punto por una cadena vacía
+        input.value = input.value.replace(/[^0-9.]/g, '');
+
+        // Si hay más de un punto, quita el exceso
+        if (input.value.split('.').length > 2) {
+            input.value = input.value.slice(0, -1);
+        }
+
+        // Si el primer carácter es un punto, agrega un cero al principio
+        if (input.value.charAt(0) === '.') {
+            input.value = '0' + input.value;
+        }
+
+        // Si hay más de un cero al principio, quita los ceros adicionales
+        if (input.value.startsWith('00')) {
+            input.value = '0' + input.value.slice(1).replace(/^0+/, '');
+        }
+    }
+
+
+    window.onload = function () {
+
+        peticionAJAX("https://api.frankfurter.app/currencies");
+
+        document.getElementById("cifra").onkeypress = validarNumero(event);
     }
 
 </script>
@@ -51,7 +80,7 @@
         <div id="main">
             <div id="cantidad">
                 <div id="numero">
-                    <input type="number" id="cifra" required autofocus placeholder="0" />
+                    <input type="text" id="cifra" required autofocus placeholder="0" />
                 </div>
                 <div id="divisa">
 
