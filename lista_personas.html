@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Ejercicio Listado Personas. AJAX</title>
+	<style type="text/css">
+		h3 {
+			color: red;
+		}
+
+		/* CSS para el formulario:   */
+		.formPersonas {
+			visibility: hidden;
+			position: absolute;
+			top: 20%;
+			left: 20%;
+			z-index: 11;
+			background-color: pink;
+			border: 2px solid maroon;
+			border-radius: 15px;
+			padding: 1em;
+			color: red;
+
+			/*	opacity:0;   */
+			/*	transition: all 1s;   */
+		}
+
+		.formPersonas div label {
+			display: block;
+			margin-top: .5em;
+		}
+
+		.formPersonas .btn {
+			display: block;
+			margin-top: 1em;
+		}
+
+
+		.ver {
+			visibility: visible;
+			opacity: 1;
+		}
+	</style>
+	<script type="text/javascript" src="util2AJAX.js"></script>
+	<script type="text/javascript">
+
+		let peticion = new pAJAX()
+
+		function pintaPersonas(datos) { // Esta funcion es la que llamara la funcion peticion()
+
+			datosParse = JSON.parse(datos);
+
+			imprimirDatosTabla(datosParse);
+			// Lógica de la función
+			console.log(datosParse);
+
+		}
+
+		function imprimirDatosTabla(datosParse) {
+
+			let tab = document.querySelector("#filas_tabla");
+
+			for (let item of datosParse) {
+
+				tab.innerHTML +=
+					"<tr>" +
+					"<td id=" + item.ID + ">" + item.ID + "</td>" +
+					"<td id=" + item.DNI + ">" + item.DNI + "</td>" +
+					"<td id=" + item.NOMBRE + ">" + item.NOMBRE + "</td>" +
+					"<td id=" + item.APELLIDOS + ">" + item.APELLIDOS + "</td>" +
+					"<td id=del" + item.ID + ">" + "<input type=\"button\" value=\"del\">" + "</td>" +
+					"<td id=edit" + item.ID + ">" + "<input type=\"button\" value=\"edit\">" + "</td>" +
+					"</tr>";
+			}
+		}
+
+		function mostrarForm() {
+
+			let form = document.querySelector("#formPersonas");
+			form.style.visibility = "visible";
+
+			
+		}
+
+		window.onload = function () {
+
+			/*
+			url = peticion.php saca los datos de la base de datos a rtraves de consultas SQL
+			metodo = POST indicamos el metodo por el que vamos a pasar los parametros
+			objeto = { servicio : listar } 
+			*/
+
+			let url = "servidor.php";
+			let metodo = "POST";
+			let objeto = { servicio: "listar" };
+			let param = JSON.stringify(objeto);
+
+			console.log(param);
+
+			peticion.peticion(url, metodo, pintaPersonas, param);
+
+			document.querySelector("#btNuevaPersona").addEventListener("click", mostrarForm);
+
+		}
+
+	</script>
+</head>
+
+<body>
+	<h3>Registro de Usuarios</h3>
+
+	<div id="formPersonas" class="formPersonas">
+		<fieldset>
+			<legend>Alta en el servicio</legend>
+			<div>
+				<label for="dni">DNI</label>
+				<input type="text" id="dni" size="10" maxlength="9" value="27473339T" />
+			</div>
+			<div>
+				<label for="nombre">Nombre</label>
+				<input type="text" id="nombre" value="Marco Elio" />
+			</div>
+			<div>
+				<label for="apellidos">Apellidos</label>
+				<input type="text" id="apellidos" size="40" value="García Gomariz" />
+			</div>
+			<div class="btn">
+				<button id="btAnade">Añadir </button>
+				<button id="btCancelar">Cancelar </button>
+			</div>
+		</fieldset>
+	</div>
+
+
+
+	<br />
+	<button class="btn" id="btNuevaPersona">Nueva persona</button>
+	<br><br>
+	<table id="tabla_personas" border="1">
+		<tr>
+			<th>ID</th>
+			<th>DNI</th>
+			<th>NOMBRE</th>
+			<th>APELLIDOS</th>
+			<th>Borrar</th>
+			<th>Editar</th>
+		</tr>
+
+		<tbody id="filas_tabla">
+
+		</tbody>
+	</table>
+
+	<br><br>
+
+</body>
+
+</html>
