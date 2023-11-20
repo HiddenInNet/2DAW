@@ -8,55 +8,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+<script src="index.js"></script>
+
 <script>
-
-    function peticionAJAX(url) {
-
-        var peticion = new XMLHttpRequest();
-
-        peticion.open('GET', url, true);
-        peticion.send();
-
-        peticion.onreadystatechange = function () {
-            if (peticion.readyState == 4 && peticion.status == 200) {
-                var responseData = JSON.parse(peticion.responseText);
-
-                console.log(responseData);
-            }
-        };
-
-    }
-
-    function validarNumero(event) {
-
-
-        // Reemplaza cualquier caracter que no sea un dígito o un punto por una cadena vacía
-        input.value = input.value.replace(/[^0-9.]/g, '');
-
-        // Si hay más de un punto, quita el exceso
-        if (input.value.split('.').length > 2) {
-            input.value = input.value.slice(0, -1);
-        }
-
-        // Si el primer carácter es un punto, agrega un cero al principio
-        if (input.value.charAt(0) === '.') {
-            input.value = '0' + input.value;
-        }
-
-        // Si hay más de un cero al principio, quita los ceros adicionales
-        if (input.value.startsWith('00')) {
-            input.value = '0' + input.value.slice(1).replace(/^0+/, '');
-        }
-    }
-
-
     window.onload = function () {
-
         peticionAJAX("https://api.frankfurter.app/currencies");
 
-        document.getElementById("cifra").onkeypress = validarNumero(event);
-    }
+        document.getElementById("boton").onclick = recogeInput;
 
+    }
 </script>
 
 <body>
@@ -78,22 +38,32 @@
 
     <main>
         <div id="main">
-            <div id="cantidad">
-                <div id="numero">
-                    <input type="text" id="cifra" required autofocus placeholder="0" />
-                </div>
-                <div id="divisa">
+            <div id="cantidad-div">
+                <div id="numeroydivisa">
+                    <div id="numero">
+                        <input type="text" id="cifra" autofocus placeholder="0" />
+                    </div>
+                    <div id="divisa">
+                        <select id="seleccion-divisas">
 
+                        </select>
+                    </div>
+                </div>
+                <div id="convertir">
+                    <input type="button" id="boton" value="Enviar">
                 </div>
             </div>
 
             <div id="tabla">
-                <!-- Aqui ira la tabla con todos los valores referentes a la moneda indicada en .<div id="moneda">. -->
+                <table id="datos">
 
+                </table>
+                <div id="detalles">
+
+                </div>
             </div>
         </div>
     </main>
-
 
     <footer>
         <div id="created"></div><!-- Created by David Gonzalez -->
