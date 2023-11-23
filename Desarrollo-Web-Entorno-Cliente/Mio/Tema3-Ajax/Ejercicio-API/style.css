@@ -15,58 +15,142 @@ header {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
-  height: 60em;
+  min-height: calc(fit-content);
   background-image: url(recursos/fondo-main.png);
 
   #main {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
     height: fit-content;
 
-    #cantidad {
+    #cantidad-div {
       display: flex;
-      flex-direction: row;
-      width: 30%;
+      flex-direction: column;
+      width: 20%;
       height: 20em;
 
-      #numero {
+      #numeroydivisa {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: row;
+        justify-content: space-around;
         height: 100%;
-        width: 50%;
+        width: 100%;
 
-        #cifra {
-          border: none;
-          color: rgb(214, 214, 214);
-          text-align: center;
-          font-size: 4em;
-          width: 40%;
-          height: 40%;
-          border-bottom: 3px solid black;
-          background-color: rgb(37, 37, 66);
-          border-radius: 10px;
-          outline: none;
+        #numero {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 50%;
+
+          #cifra {
+            border: 2px solid black;
+            color: rgb(214, 214, 214);
+            text-align: center;
+            font-size: 4em;
+            width: 70%;
+            height: 40%;
+            border-bottom: 3px solid black;
+            background-color: rgb(55, 55, 102);
+            border-radius: 10px;
+            outline: none;
+          }
+
+          #cifra:focus {
+            border: none;
+          }
         }
 
-        #cifra:focus {
-          border: none;
+        #divisa {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 50%;
+
+          #seleccion-divisas {
+            font-size: 2em;
+            height: 30%;
+            width: 70%;
+          }
         }
       }
 
-      #divisa {
-        height: 100%;
-        width: 50%;
+      #convertir {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        #boton {
+          font-size: 2em;
+          background-color: rgb(255, 255, 195);
+          width: 50%;
+          height: 40px;
+        }
       }
     }
 
     #tabla {
       width: 70%;
-      height: 20em;
-      /* height: fit-content; para que se ajuste segun el tamaño de la tabla */
-      background-color: brown;
+      height: fit-content;
+      background-color: rgb(90, 90, 155);
+      border: 3px solid rgb(36, 36, 57);
     }
   }
+
+  #monedas-disponibles {
+    width: 80%;
+    height: 20em;
+    background-color: aquamarine;
+  }
+}
+
+/* ----------------- Tablas ----------------- */
+table {
+  border-collapse: collapse;
+  font-size: 1.5em;
+  margin: 5px;
+  background-color: rgb(255, 255, 255);
+  border: 3px solid black;
+}
+
+#tabla {
+  display: flex;
+  flex-direction: row;
+}
+
+thead tr th {
+  padding: 15px;
+  border: 3px solid black;
+}
+
+tbody tr td {
+  border: 1px solid rgb(212, 212, 212);
+}
+
+td.detalles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+tbody tr:hover {
+  background-color: rgb(188, 255, 255);
+}
+
+/* ----------------- # ----------------- */
+
+footer {
+  background-color: rgb(37, 37, 66);
+  height: 20em;
+  width: 100%;
 }
