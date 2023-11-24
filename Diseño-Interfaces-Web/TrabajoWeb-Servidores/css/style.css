@@ -27,19 +27,29 @@ header {
 }
 
 #nombre h1 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 2em;
+  font-family: cursive;
+  font-size: 2.5em;
   color: aliceblue;
+  text-shadow: 20px 15px 7px #474747;
 }
 
 div#bottom-header {
   height: 30%;
+  width: 100%;
+}
+
+.container_top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  height: 100%;
 }
 
 div#top-header {
-  margin: 5px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   height: 70%;
 }
