@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Envio de parametros con AJAX externo</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			background-image: url('https://cdn.alfabetajuega.com/alfabetajuega/2021/04/3-2.jpg?height=600');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		}
+
+		.contenedor {
+			display: flex;
+		}
+
+		.div1 {
+			width: 55%;
+			padding: 20px;
+			box-sizing: border-box;
+			/*para que no se salga el contenido del div por los bordes*/
+			overflow-wrap: break-word;
+		}
+
+		.div2 {
+			width: 45%;
+			margin: 20px;
+			background-color: rgba(0, 0, 0, 0.692);
+			padding: 20px;
+			box-sizing: border-box;
+			border-radius: 35px;
+			color: white;
+			font-size: 1.2em;
+			/*para que no se salga el contenido del div por los bordes*/
+			overflow-wrap: break-word;
+		}
+
+		.estiloTabla {
+			margin: auto;
+			width: 70%;
+			border-collapse: collapse;
+		}
+
+		.estiloTabla td {
+			font-size: 1em;
+			border: 2px solid orangered;
+			padding: 5px;
+		}
+
+		.estiloTabla th {
+			border: 3px solid orangered;
+			font-size: 1.2em;
+			padding: 5px;
+			background-color: orange;
+			color: #ffffff;
+		}
+
+		.estiloTabla tr td {
+			color: #000000;
+			background-color: rgb(255, 233, 191);
+		}
+
+		h1 {
+			margin: 10px;
+		}
+
+		caption {
+			caption-side: bottom;
+			color: white;
+		}
+
+		p {
+			text-align: center;
+		}
+
+		input[type="button"] {
+			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+			font-size: 1.2em;
+			border-radius: 500px;
+			padding: 10px;
+			margin: 10px;
+			border: 0px;
+			background-color: orange;
+		}
+
+		input[type="button"]:hover {
+			cursor: pointer;
+		}
+
+		input[type="button"]:active {
+			background-color: orangered;
+		}
+
+		.imagenPersonaje {
+			width: 200px;
+			margin: 10px;
+			border: 2px solid black;
+			box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.336);
+			border-radius: 10px;
+		}
+
+		.columnaImagen {
+			text-align: center;
+			/* Alinea el contenido en el centro horizontalmente */
+			vertical-align: middle;
+			/* Alinea el contenido en el centro verticalmente */
+		}
+	</style>
+
+	<script type="text/javascript">
+		//PARA LAS PETICIONES
+		let peticion_http;
+		function pedir(enlace, funcion) {
+			// Obtener la instancia del objeto XMLHttpRequest
+			peticion_http = new XMLHttpRequest();
+			// Preparar la funcion de respuesta
+			peticion_http.onreadystatechange = funcion;
+			// Realizar peticion HTTP
+			peticion_http.open('GET', enlace);
+			peticion_http.send(null);
+		}
+		function muestraPersonajes() {
+
+			if (peticion_http.readyState == 4) {
+				if (peticion_http.status == 200) {
+					//borro el contenido del tbody
+					document.getElementById("cuerpoPersonajes").innerHTML = "";
+					console.log(JSON.parse(peticion_http.responseText));
+					llenaTabla(JSON.parse(peticion_http.responseText), document.getElementById("cuerpoPersonajes"));
+					//actualizo los botones ANTERIOR y SIGUIENTE 
+					url = "https://www.narutodb.xyz/api/character?page=0";
+					actualizarBotones((url + (JSON.parse(peticion_http.responseText).currentPage - 1)), (url + (JSON.parse(peticion_http.responseText).currentPage + 1)))
+				}
+			}
+		}
+		function muestraMasInfo() {
+			if (peticion_http.readyState == 4) {
+				if (peticion_http.status == 200) {
+					console.log(JSON.parse(peticion_http.responseText));
+					llenaDiv(JSON.parse(peticion_http.responseText), document.getElementById("masInfo"));
+				}
+			}
+		}
+
+		//PARA ACTUALIZAR LOS BOTONES AL MOSTRAR LOS PERSONAJES
+		function actualizarBotones(eAnterior, eSiguiente) {
+			//si hay página anterior
+			if (eAnterior.substring(eAnterior.length - 2) > 0) {
+				document.getElementById("anterior").disabled = false;
+				document.getElementById("anterior").onclick = function () {
+					pedir(eAnterior, muestraPersonajes);
+				}
+			} else {
+				document.getElementById("anterior").disabled = true;
+			}
+			//si hay página siguiente
+			if (eSiguiente.substring(eSiguiente.length - 2) < 73) {
+				document.getElementById("siguiente").disabled = false;
+
+				document.getElementById("siguiente").onclick = function () {
+					pedir(eSiguiente, muestraPersonajes);
+				}
+			} else {
+				document.getElementById("siguiente").disabled = true;
+			}
+		}
+
+		//FUNCIONES PARA LLENAR LA TABLA
+		function llenaTabla(arr, tab) {
+			for (var i = 0; i < arr.characters.length; i++) {
+				tab.appendChild(llenaFila(arr.characters[i]));
+			}
+		}
+		function llenaFila(arr) {
+			var lista = new Array(arr.id, arr.name, arr.images);
+			var fila = document.createElement("tr");
+
+			for (var i = 0; i < 2; i++) {
+				var columna = document.createElement("td");
+				columna.appendChild(document.createTextNode(lista[i]));
+				fila.appendChild(columna);
+			}
+
+			//para la imagen de la tabla 
+			var columnaImagenes = document.createElement("td");
+			console.log(lista[2]);
+			var imagenes = lista[2];
+			for (var i = 0; i < imagenes.length; i++) {
+				var imagen = new Image();
+				imagen.src = imagenes[i];
+				imagen.className = 'imagenPersonaje';
+				columnaImagenes.appendChild(imagen);
+				columnaImagenes.className = 'columnaImagen';
+			}
+			fila.appendChild(columnaImagenes);
+
+			//para el botón de más info
+			var columnaMasInfo = document.createElement("td");
+			columnaMasInfo.style.textAlign = 'center';
+			var boton = document.createElement("input");
+			boton.type = "button";
+			boton.value = "MAS";
+			boton.onclick = function (e) {
+				pedir(("https://www.narutodb.xyz/api/character/search?name=" + lista[1]), muestraMasInfo);
+				//pedir(enlacePlaneta, muestraPlaneta);
+			}
+			columnaMasInfo.appendChild(boton);
+			fila.appendChild(columnaMasInfo);
+
+			return fila;
+		}
+
+		//FUNCION PARA LLENAR EL DIV
+		function llenaDiv(arr, div) {
+			// Genera el HTML dinámicamente utilizando Object.entries y map
+			var contenido = Object.entries(arr).map(([key, value]) => {
+				if (key === 'images' && Array.isArray(value)) {
+					// Para el atributo "images"
+					return `<h3>${key}:</h3><div class="imagenMasInfo">${value.map(imgSrc => `<img src="${imgSrc}" alt="Imagen" class="imagenPersonaje">`).join('')}</div>`;
+				} else if (typeof value === 'object' && !Array.isArray(value)) {
+					// Para objetos anidados
+					return `<h3>${key}:</h3><ul>${Object.entries(value).map(([subKey, subValue]) => `<li><strong>${subKey}:</strong> ${subValue}</li>`).join('')}</ul>`;
+				} else if (Array.isArray(value)) {
+					// Para arrays
+					return `<h3>${key}:</h3><ul>${value.map(item => `<li>${item}</li>`).join('')}</ul>`;
+				} else {
+					// Para propiedades simples
+					return `<p><strong>${key}:</strong> ${value}</p>`;
+				}
+			}).join('');
+			// Agrega el HTML al div
+			div.innerHTML = contenido;
+		}
+
+		//WINDOW.ONLOAD
+		window.onload = function () {
+			pedir('https://www.narutodb.xyz/api/character?page=68', muestraPersonajes);
+		}
+	</script>
+</head>
+
+<body>
+	<h1>API de Naruto</h1>
+	<div class="contenedor">
+		<div class="div1">
+			<!-- Contenido del primer div -->
+			<p>
+				<input type="button" id="anterior" value="ANTERIOR">
+				<input type="button" id="siguiente" value="SIGUIENTE">
+			</p>
+			<table id="personajes" class="estiloTabla">
+				<caption>Personajes Naruto</caption>
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>Nombre</th>
+						<th>Foto</th>
+						<th>Más información</th>
+					</tr>
+				</thead>
+				<tbody id="cuerpoPersonajes">
+
+				</tbody>
+			</table>
+
+		</div>
+		<div class="div2">
+			<!-- Contenido del segundo div -->
+
+			<div id="masInfo">
+				<h2>Datos del personaje:</h2>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
