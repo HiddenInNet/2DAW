@@ -4,58 +4,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web - Modo Oscuro</title>
+    <title>Instalación de Servidores Java</title>
     <style>
         body {
-            background-color: #121212;
-            /* Fondo oscuro */
-            color: #fff;
-            /* Texto claro */
+            font-family: Arial, sans-serif;
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 200px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
         }
 
         header {
-            background-color: #1f1f1f;
-            /* Fondo oscuro para el encabezado */
-            padding: 20px;
             text-align: center;
-            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
-            /* Sombra */
+            padding: 50px 0;
         }
 
-        .header-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        section {
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .logo {
-            max-width: 100px;
-            /* Tamaño máximo del logo */
-            max-height: 100px;
-            /* Altura máxima del logo */
-            margin-right: 20px;
-            /* Espacio a la derecha del logo */
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 1.5em;
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <div class="header-content">
-            <img src="tu-logo.png" alt="Logo de la página" class="logo">
-            <h1>Mi Página Web</h1>
-        </div>
-    </header>
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#instalacion">Instalación</a>
+        <a href="#configuracion">Configuración</a>
+        <a href="#ejemplos">Ejemplos</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
 
-    <!-- El resto de tu contenido irá aquí -->
+    <main>
+
+        <header>
+            <h1>Instalación de Servidores Java</h1>
+            <p>Explora cómo instalar y configurar servidores que interpretan Java.</p>
+        </header>
+
+        <section id="inicio">
+            <h2>Inicio</h2>
+            <p>Bienvenido a nuestra guía de instalación de servidores Java. Aquí encontrarás información detallada para
+                comenzar.</p>
+        </section>
+
+        <section id="instalacion">
+            <h2>Instalación</h2>
+            <p>Aprende cómo instalar el servidor Java paso a paso y los requisitos del sistema necesarios.</p>
+        </section>
+
+        <section id="configuracion">
+            <h2>Configuración</h2>
+            <p>Descubre cómo configurar tu servidor Java para optimizar el rendimiento y la seguridad.</p>
+        </section>
+
+        <section id="ejemplos">
+            <h2>Ejemplos</h2>
+            <p>Explora ejemplos prácticos de aplicaciones Java que puedes implementar en tu servidor.</p>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>¿Tienes preguntas o comentarios? Contáctanos para obtener asistencia.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Instalación de Servidores Java</p>
+    </footer>
 
 </body>
 
