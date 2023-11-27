@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Ejemplo Web Storage</title>
+	<style>
+		div {
+			border: 2px solid blue;
+			margin: 2em;
+
+			padding: 1em;
+		}
+	</style>
+	<script type="text/javascript">
+
+		function guardarDatos() {
+
+			let key = document.querySelector("#etiqueta").value;
+			let valor = document.querySelector("#dato").value;
+
+			localStorage.setItem(key, valor);
+
+		}
+
+		function borrarDato() {
+
+			let key = document.querySelector("#etiqueta").value;
+
+			localStorage.removeItem(key);
+		}
+
+		function mostrarDato() {
+
+			let key = document.querySelector("#etiqueta").value;
+			let dato = localStorage.getItem(key);
+
+			document.querySelector("#sal").innerHTML = key + ": " + dato
+		}
+
+		function mostrarTodo() {
+
+			let tab = document.querySelector("#contenido");
+			tab.innerHTML = "";
+
+			for (let i = 0; i < localStorage.length; i++) {
+
+				let key = localStorage.key(i);
+				let dato = localStorage.getItem(key);
+
+				tab.innerHTML += key + ": " + dato + "<br>";
+			}
+		}
+
+		function visitas() {
+
+			if (localStorage.getItem("numeroVisitas") === null) {
+
+				localStorage.setItem("numeroVisitas", "1");
+			} else {
+
+				let visitas = localStorage.getItem("numeroVisitas");
+				visitas++;
+				localStorage.setItem("numeroVisitas", visitas);
+			}
+		}
+
+		function mostrarVisitas() {
+
+			let tab = document.querySelector("#nvisitas");
+			tab.innerHTML = localStorage.getItem("numeroVisitas");
+		}
+
+		window.onload = function () {
+
+			visitas();
+			mostrarVisitas();
+			document.querySelector("#btGuardar").addEventListener('click', guardarDatos);
+			document.querySelector("#btBorrarDato").addEventListener('click', borrarDato);
+			document.querySelector("#btMostrar").addEventListener('click', mostrarDato);
+			document.querySelector("#btContenido").addEventListener('click', mostrarTodo);
+		}
+
+	</script>
+</head>
+
+<body>
+
+	<h3>Esto es un ejermplo de Web Storage</h3>
+
+	<label>Nombre: </label>
+	<input type="text" name="etiqueta" id="etiqueta">
+	<br><br>
+	<label>Dato: </label>
+	<input type="text" name="dato" id="dato">
+	<br /><br />
+
+	<hr>
+	<br><br>
+	<button id="btGuardar">Guardar Dato</button>
+	<button id="btMostrar">Mostrar Dato</button>
+	<button id="btContenido">Contenido del Web Storage</button>
+
+	<button id="btBorrarDato">Borrar Dato</button>
+	<button id="btBorrarTodo">Borrar Todo</button>
+
+	<p>
+	<div id="sal">
+		Aquí ponemos el dato leido del localStorage
+	</div>
+	<div id="nvisitas">
+		Aquí se muestra el número de visitas
+	</div>
+	</p>
+	<p>
+	<div id="contenido">
+		Contenido de todo el Web Storage
+	</div>
+	</p>
+
+</body>
+
+</html>

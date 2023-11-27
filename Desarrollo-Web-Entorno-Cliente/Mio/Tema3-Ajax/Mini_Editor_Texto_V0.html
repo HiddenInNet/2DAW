@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>   
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <title>Plantilla</title>
+		
+		<style type="text/css">
+		#texto {
+			width: 700px;
+			height: 500px;
+			border: 1px solid blue;
+			padding: 0.4em;
+		}
+		span {
+			border: 2px solid red;
+			margin: 1.1em;
+			padding: .2em;
+			cursor: pointer;
+			background-color: pink;
+		}
+		
+		</style>
+		
+    <script type="text/javascript">
+      
+      
+    </script>
+  </head>
+  
+  <body>
+
+    <h3>Procesador de Textos</h3>
+		<p>
+			<span id="guardar">Guardar</span>
+			<span id="negrita">Negrita</span>
+			<span id="cursiva">Cursiva</span>
+			<span id="subrayado">Subrayado</span>
+			<span id="color">Color</span>
+		</p>
+		<div id="texto" contentEditable="true" spellcheck="true">
+			Esto es un texto de prueba para no tener que estar escribiendo.
+		</div>
+		<p id="sal"></p>
+    
+  </body>
+  
+</html>
