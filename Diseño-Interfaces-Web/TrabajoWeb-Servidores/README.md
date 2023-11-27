@@ -21,6 +21,6 @@ con Java EE son:
 
 | Servidor      | Dirección de descarga                       | Página principal                    | Instalación / SO | Configuraciones |
 | ------------- | ------------------------------------------- | ----------------------------------- | ---------------- | --------------- |
-| Apache Tomcat | https://tomcat.apache.org/whichversion.html | https://tomcat.apache.org           | ❌               | ❌              |
+| Apache Tomcat | https://tomcat.apache.org/whichversion.html | https://tomcat.apache.org           | ✅               | ✅              |
 | WildFly       | https://www.wildfly.org/downloads/          | https://www.wildfly.org             | ❌               | ❌              |
 | GlassFish     | https://glassfish.org                       | https://glassfish.org/download.html | ❌               | ❌              |
