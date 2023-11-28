@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>   
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-    <title>Plantilla</title>
-		
-		<style type="text/css">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Plantilla</title>
+
+	<style type="text/css">
 		#texto {
 			width: 700px;
 			height: 500px;
 			border: 1px solid blue;
 			padding: 0.4em;
 		}
+
 		span {
 			border: 2px solid red;
 			margin: 1.1em;
@@ -18,30 +20,69 @@
 			cursor: pointer;
 			background-color: pink;
 		}
-		
-		</style>
-		
-    <script type="text/javascript">
-      
-      
-    </script>
-  </head>
-  
-  <body>
+	</style>
 
-    <h3>Procesador de Textos</h3>
-		<p>
-			<span id="guardar">Guardar</span>
-			<span id="negrita">Negrita</span>
-			<span id="cursiva">Cursiva</span>
-			<span id="subrayado">Subrayado</span>
-			<span id="color">Color</span>
-		</p>
-		<div id="texto" contentEditable="true" spellcheck="true">
-			Esto es un texto de prueba para no tener que estar escribiendo.
-		</div>
-		<p id="sal"></p>
-    
-  </body>
-  
+	<script type="text/javascript">
+
+		function guardar() {
+			let texto = document.querySelector("#texto").innerHTML;
+
+			let nombre = document.querySelector("#nombre").value;
+
+			localStorage.setItem(nombre, texto);
+		}
+
+		function negrita(e) {
+			document.execCommand("bold", false, null);
+			e.preventDefault();
+		}
+
+		function cursiva(e) {
+			document.execCommand("italic", false, null);
+			e.preventDefault();
+		}
+
+		function subrayado(e) {
+			document.execCommand("underline", false, null);
+			e.preventDefault();
+		}
+
+		function color(e) {
+			document.execCommand("foreColor", false, "#ff0000");
+			e.preventDefault();
+		}
+
+		window.onload = function () {
+
+			document.querySelector("#guardar").addEventListener('mousedown', guardar)
+			document.querySelector("#negrita").addEventListener('mousedown', negrita);
+			document.querySelector("#cursiva").addEventListener('mousedown', cursiva);
+			document.querySelector("#subrayado").addEventListener('mousedown', subrayado);
+			document.querySelector("#color").addEventListener('mousedown', color);
+		}
+
+	</script>
+</head>
+
+<body>
+
+	<h3>Procesador de Textos</h3>
+	<label>Nombre: </label>
+	<input type="text" id="nombre">
+	<label>Textos guardados: </label>
+	<select id="textosGuardados" multiple></select>
+	<p>
+		<span id="guardar">Guardar</span>
+		<span id="negrita">Negrita</span>
+		<span id="cursiva">Cursiva</span>
+		<span id="subrayado">Subrayado</span>
+		<span id="color">Color</span>
+	</p>
+	<div id="texto" contentEditable="true" spellcheck="true">
+		Esto es un texto de prueba para no tener que estar escribiendo.
+	</div>
+	<p id="sal"></p>
+
+</body>
+
 </html>
