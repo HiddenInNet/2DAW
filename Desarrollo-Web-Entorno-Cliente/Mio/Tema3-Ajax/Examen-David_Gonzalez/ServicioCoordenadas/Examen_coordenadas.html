@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Examen Coordenadas</title>
+	<style type="text/css">
+		span {
+			color: red;
+		}
+
+		.resultado {
+			text-align: center;
+			font-size: 1.5em;
+			color: maroon;
+		}
+	</style>
+	<script src="util2AJAX.js"></script>
+	<script type="text/javascript">
+
+		let pet = new pAJAX();
+		let url = "servicio_coordenadas.php";
+		let numero;
+		let letra;
+
+		/////////////////////////////////////////////// [ NUMERO ]
+		function numeroAleatorio() {
+
+			let p = {
+				servicio: "rangoFilas"
+			};
+
+			pet.peticion(url, "POST", pintaNumero, JSON.stringify(p));
+		}
+
+		function pintaNumero(numeros) {
+			let numeroAUX = (Math.floor(Math.random() * numeros)).toString();
+			numero = (numeroAUX.split(''))[0];
+
+			document.getElementById("coordenadas").innerHTML += numero;
+
+			letraAleatoria();
+
+			console.log(numero);
+		}
+
+		/////////////////////////////////////////////// [ LETRA ]
+		function letraAleatoria() {
+
+			let p = {
+				servicio: "rangoColumnas"
+			};
+
+			pet.peticion(url, "POST", pintaLetra, JSON.stringify(p));
+		}
+
+		function pintaLetra(letras) {
+
+			let letraAUX = letras.split('');
+
+			let numeroRandom = Math.floor(Math.random() * letraAUX.length);
+
+			letra = letraAUX[numeroRandom];
+
+			document.getElementById("coordenadas").innerHTML += letra;
+
+			console.log(letra);
+		}
+
+		function verificar() {
+
+			let p = {
+				servicio: "elemento",
+				fila: numero,
+				columna: letra
+			}
+
+			pet.peticion(url, "POST", imprimirValidar, JSON.stringify(p));
+
+		}
+
+		function imprimirValidar(datos) {
+			console.log(datos)
+
+			let numeroIntroducido = document.getElementById("valor").value;
+
+			if (numeroIntroducido == datos) {
+
+				document.querySelector(".resultado").innerHTML = "VERDADERO";
+
+			} else {
+
+				document.querySelector(".resultado").innerHTML = "FALSO";
+
+			}
+		}
+
+		window.onload = function () {
+			numeroAleatorio();
+			document.getElementById("btValidar").onclick = verificar;
+		}
+
+	</script>
+</head>
+
+<body>
+
+	<h1>Acceso al sistema</h1>
+	<form>
+		<p>
+		<h3>Sistema de validación según tarjeta de coordenadas:</h3>
+		<label for="valor">Introduzca el valor para las coordenadas: <span id="coordenadas"> </span> </label>
+		<br>
+		<input type="text" id="valor" maxlength="2" size="1" autofocus />
+		<span id="info_valor"> </span>
+		<br><br>
+		</p>
+		<p class="resultado">
+
+		</p>
+		<p>
+			<input type="button" id="btValidar" value="ACEPTAR">
+		</p>
+	</form>
+
+</body>
+
+</html>

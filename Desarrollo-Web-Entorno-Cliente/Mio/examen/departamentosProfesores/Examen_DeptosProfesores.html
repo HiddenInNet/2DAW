@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Examen 1ª Evaluación DWEC</title>
+	<style>
+		h3 {
+			color: red;
+		}
+
+		/* CSS para el formulario:   */
+		.formProfes {
+			visibility: hidden;
+			position: absolute;
+			top: 20%;
+			left: 20%;
+			z-index: 11;
+			background-color: pink;
+			border: 2px solid maroon;
+			border-radius: 15px;
+			padding: 1em;
+			color: red;
+		}
+
+		.formProfes div label {
+			display: block;
+			margin-top: .5em;
+		}
+
+		.formProfes .btn {
+			display: block;
+			margin-top: 1em;
+		}
+
+
+		.ver {
+			visibility: visible;
+		}
+
+
+		#deptoDelProfe {
+			font-family: "Lucida Console", "Courier New", monospace;
+			font-size: 1.2em;
+			font-weight: bold;
+			color: blue;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		// Archivo donde enviaremos las peticiones
+		const url = "deptosProfes.php";
+
+		function pedirDepartamentos() {
+
+			var pa = {
+				servicio: "departamentos"
+			};
+
+			var parametros = {
+				method: "POST",
+				body: JSON.stringify(pa), // Si el método es GET no tiene body
+				headers: {
+					"Content-Type": "application/json"
+				}
+			};
+
+			fetch(url, parametros)
+				.then(response => response.json())
+
+				.then(datos => {
+					console.log("obteniendo datos departamentos: ", datos);
+
+					// Método que vamos a llamar
+					imprimirDepartamentos(datos);
+				})
+				.catch(error => console.error("Hubo un problema con la solicitud fetch:", error));
+		}
+
+		function imprimirDepartamentos(datos) {
+
+			let tab, fila, columna, boton;
+
+			tab = document.querySelector("#detalle_departamentos");
+
+			for (let i = 0; i < datos.length; i++) {
+				fila = creaFila(datos[i]);
+
+				// ACCION BOTON 
+				columna = document.createElement("td");
+				boton = document.createElement("button");
+				boton.innerHTML = "Ver Profes";
+				boton.type = "button";
+				//boton.onclick = leerProfesores;
+				boton.dataset.iddepartamento = datos[i].ID;
+				boton.dataset.nombredepartamento = datos[i].NOMBRE;
+
+				// Unimos todo
+				columna.appendChild(boton);
+				fila.appendChild(columna);
+				tab.appendChild(fila);
+			}
+		}
+
+		// [ CREAR FILA (TABLA DEPARTAMENTOS) ] 
+		function creaFila(datosIndividual) {	// Obtiene los datos de los departamentos 1 por 1
+			console.log(datosIndividual);
+			var fila = document.createElement("tr");
+			var columna, contenido;
+
+			for (var i in datosIndividual) {
+				console.log(i);
+				console.log(datosIndividual[i])
+				columna = document.createElement("td");
+				contenido = document.createTextNode(datosIndividual[i]);
+				columna.appendChild(contenido);
+				fila.appendChild(columna);
+			}
+			return fila;
+		}
+
+		window.onload = function () {
+			pedirDepartamentos();
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<h1>Registro de Usuarios</h1>
+	<form>
+		<br>
+		<h4>Selecciona Departamento:</h4>
+		<p>
+		<div id="departamentos">
+			<table border="1">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>NOMBRE</th>
+						<th>DESCRIPCION</th>
+						<th>Acción</th>
+					</tr>
+				</thead>
+
+				<tbody id="detalle_departamentos">
+
+				</tbody>
+
+
+			</table>
+		</div>
+		</p>
+
+
+
+		<br />
+		<br />
+		Tabla de Profesores. Departamento de <span id="deptoDelProfe"></span>:
+		<br><br>
+		<button class="btn" id="btNuevaProfe" type="button">Nueva profe</button>
+
+		<p>
+		<div id="profesores">
+			<table border="1">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>DNI</th>
+						<th>NOMBRE</th>
+						<th>APELLIDOS</th>
+						<th>Eliminar</th>
+						<th>Editar</th>
+					</tr>
+				</thead>
+
+				<tbody id="detalle_profesores">
+
+				</tbody>
+
+
+			</table>
+		</div>
+		</p>
+
+
+		<div id="formProfes" class="formProfes">
+			<fieldset>
+				<legend>Alta en el servicio</legend>
+				<div>
+					<label for="dni">DNI</label>
+					<input type="text" id="dni" size="10" maxlength="9" />
+				</div>
+				<div>
+					<label for="nombre">Nombre</label>
+					<input type="text" id="nombre" />
+				</div>
+				<div>
+					<label for="apellidos">Apellidos</label>
+					<input type="text" id="apellidos" size="40" />
+				</div>
+				<div class="btn">
+					<button id="btAnade" type="button" data-idprofe="-1">Añadir </button>
+					<button id="btCancelar" type="button">Cancelar </button>
+				</div>
+			</fieldset>
+		</div>
+
+	</form>
+
+</body>
+
+</html>
