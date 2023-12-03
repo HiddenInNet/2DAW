@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Servidores</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/listas.css">
+    <link rel="stylesheet" href="css/buscador.css">
+
+</head>
+
+<body>
+
+    <div id="main" class="container">
+
+        <header>
+            <!-- Header de la página web -->
+            <div id="top-header" class="container">
+                <div id="logo" class="containertop">
+                    <img src="images/logo1.png" alt="">
+                    <h1>Manual Servidores</h1>
+                </div>
+                <div id="nombre" class="containertop">
+
+                </div>
+                <div id="buscador" class="containertop">
+                    <div id='search-box'>
+                        <form action='/search' id='search-form' method='get' target='_top'>
+                            <input id='search-text' name='q' placeholder='Escribe lo que buscas' type='text' />
+                            <button id='search-button' type='submit'><span>Buscar</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-header" class="container">
+                <nav id="menu-header">
+                    <a href="index.html">Apache Tomcat</a>
+                    <a href="wildfly.html">WildFly</a>
+                    <a href="glassfish.html">GlassFish</a>
+                    <a href="#">Comunidad</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Cuerpo de la página web -->
+        <main>
+            <div id="body" class="container">
+                <nav id="izquierda">
+                    <a href="#">Inicio</a>
+                    <a href="#caracteristicas">Características</a>
+                    <a href="#instalacion">Instalación</a>
+                </nav>
+
+                <div id="info" class="container">
+
+                    <section id="inicio">
+                        <h1>Inicio</h1>
+                        <p>
+                            WildFly, conocido antes como JBoss As, o solo JBoss, es un servidor Open Source de
+                            aplicaciones Java EE. Es útil para crear, implementar y hospedar aplicaciones y
+                            servicios Java. Además, maneja servlets, JSP, EJB y JMS.
+                        </p>
+                    </section>
+
+                    <section id="caracteristicas">
+                        <h1>Características</h1>
+
+                        <ol id="lista2">
+                            <li>
+                                <p>
+                                    <b>Rápida puesta en marcha:</b> Permite una rápida puesta de las aplicaciones,
+                                    arrancando los procesos críticos en paralelo, para eliminar las esperas
+                                    innecesarias y aprovechar la potencia de los procesadores multi-núcleo.
+                                    Los servicios no críticos se mantienen congelados hasta su primer uso.
+                                    Gracias a ello, ofrece una reducción de 10 veces en el tiempo de inicio
+                                    con respecto a versiones anteriores
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <b>Escalabilidad:</b> Dispone de un conjunto de herramientas preparadas
+                                    para atender una gran demanda, donde destaca su servidor web Undertow,
+                                    capaz de escalar hasta millones de conexiones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <b>Ahorro de memoria:</b> Su gestión de la memoria es capaz de minimizar la
+                                    asignación de posiciones, evitando la carga de clases duplicadas y
+                                    objetos, aligerando también los procesos del colector de basura de Java.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <b>Motor capaz de configurarse a las necesidades</b> El runtime de Wildfly dispone
+                                    de una arquitectura donde se pueden añadir o quitar módulos, lo que puede
+                                    reducir o ampliar sus funcionalidades bajo demanda, ayudando a mantener memoria
+                                    y espacio en disco ajustado a las necesidades reales.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <b>Administración unificada</b> La administración de sus distintos módulos se
+                                    puede hacer de manera centralizada y amistosa para el usuario. Los distintos
+                                    subsistemas se pueden configurar desde el mismo fichero de configuración, aunque
+                                    ya disponen de unos valores por defecto asignados de manera inteligente. Además
+                                    se dispone de múltiples interfaces para configuración, desde consola, API, HTTP,
+                                    etc.
+                                </p>
+                            </li>
+                        </ol>
+
+                    </section>
+
+                    <section id="instalacion">
+                        <h1>Instalación</h1>
+
+                        <ol id="lista5">
+                            <li>
+                                <p>
+                                    WildFly está escrito en Java, por eso requiere Java JDK para funcionar.
+                                    Para cumplir este requisito, los usuarios podemos optar por instalar el
+                                    JDK de Java oficial de Oracle o usar la alternativa de código abierto
+                                    llamada OpenJDK.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Para este ejemplo, vamos a optar por la versión de código
+                                    abierto de Java, por eso en una terminal (Ctrl+Alt+T) vamos a escribir:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo apt update</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/1-comando.PNG">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Instalamos el JDK de Java por defecto usando el siguiente comando:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo apt install default-jdk</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/2-comando.PNG">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Después de instalar OpenJDK, podemos comprobar la instalación
+                                    escribiendo en la terminal:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ java -version</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/3-comando.PNG">
+                                </div>
+
+                                <p>
+                                    Si la terminal te devuelve unas líneas como las de la anterior captura, Java estará
+                                    instalado y listo.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Dado que este es un servidor de aplicaciones, generalmente se recomienda usar una
+                                    cuenta de servicio dedicada. Ejecuta en la terminal (Ctrl+Alt+T) los siguientes
+                                    comandos para crear una cuenta de servicio de WildFly para administrar el servidor:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo groupadd -r wildfly</code>
+                                </div>
+
+                                <div class="code">
+                                    <code>$ sudo useradd -r -g wildfly -d /opt/wildfly -s /sbin/nologin wildfly</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/4-comando.PNG">
+                                </div>
+
+                                <p>
+                                    Terminado, continuamos con la descarga e instala de WildFly.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Terminada la instalación de Java JDK y terminada la creación de una cuenta de
+                                    servicio para WildFly, ejecutaremos los siguientes comandos para descargar el
+                                    paquete para WildFly. En este preciso momento, la versión actual es la 16.0.0.Final.
+                                    La última versión disponible, se puede consultar en su <a
+                                        href="https://www.wildfly.org/downloads/"><b>página de
+                                            descargas</b></a>.
+
+                                    Si abrimos una terminal (Ctrl+Alt+T), podemos utilizar el comando wget para
+                                    descargar el paquete fácilmente usando los siguientes comandos:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ cd /tmp</code>
+                                </div>
+
+                                <div class="code">
+                                    <code>$ wget https://download.jboss.org/wildfly/16.0.0.Final/wildfly-16.0.0.Final.tar.gz</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/5-comando.PNG">
+                                </div>
+
+                                <p>
+                                    Terminada la descarga, tendremos que ejecutar los siguientes comandos para crear la
+                                    carpeta WildFly en el directorio /opt y para cambiar su propiedad a la cuenta de
+                                    servicio de WildFly.
+                                </p>
+
+                                <div class="code">
+                                    <code>$ tar xvf wildfly-16.0.0.Final.tar.gz</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/6-comando.PNG">
+                                </div>
+
+                                <div class="code">
+                                    <code>$ sudo mv wildfly-16.0.0.Final/ /opt/wildfly</code>
+                                </div>
+
+                                <div class="code">
+                                    <code>$ sudo chown -RH wildfly: /opt/wildfly</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/7-comando.PNG">
+                                </div>
+
+                            </li>
+                            <li>
+                                <p>
+                                    Continuamos creando la carpeta de servicio de WildFly en el directorio /etc/ con el
+                                    siguiente comando:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo mkdir -p /etc/wildfly</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/8-comando.PNG">
+                                </div>
+
+                                <p>
+                                    Tras crear el directorio, copia los archivos de configuración de WildFly y los
+                                    ejecutables en el directorio recién creado.
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly/</code>
+                                </div>
+
+                                <div class="code">
+                                    <code>$ sudo cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin/</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/9-comando.PNG">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    También tenemos que hacer que los scripts en el directorio /etc/wildfly/bin sean
+                                    ejecutables.
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo sh -c 'chmod +x /opt/wildfly/bin/*.sh'</code>
+                                </div>
+
+                                <p>
+                                    En este punto vamos a copiar el archivo systemd al directorio /etc/systemd/system/
+                                    ejecutando:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system/</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/10-comando.PNG">
+                                </div>
+
+                            </li>
+                            <li>
+                                <p>
+                                    Ahora podemos utilizar los siguientes comandos para detener, iniciar y habilitar los
+                                    servicios de WildFly para que se inicien automáticamente en el momento del arranque:
+                                </p>
+
+                                <p>
+                                    Primero detenemos el servicio:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo systemctl stop wildfly.service</code>
+                                </div>
+
+                                <p>
+                                    Ahora iniciamos el servicio:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo systemctl start wildfly.service</code>
+                                </div>
+
+                                <p>
+                                    Y terminamos habilitando el servicio:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo systemctl enable wildfly.service</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/11-comando.PNG">
+                                </div>
+
+                            </li>
+                            <li>
+                                <p>
+                                    Para verificar el inicio, ejecuta el siguiente comando:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo systemctl status wildfly.service</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/12-comando.PNG">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Ya podemos abrir el navegador y como URL utilizar el nombre de host o la dirección
+                                    IP del servidor seguido por el puerto 8080.
+                                </p>
+
+                                <div class="code">
+                                    <code>localhost:8080</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/wildfly/13-comando.PNG">
+                                </div>
+                            </li>
+                        </ol>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Footer de la págna web-->
+            <div id="footer" class="container"></div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

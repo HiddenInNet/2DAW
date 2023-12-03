@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Servidores</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/listas.css">
+    <link rel="stylesheet" href="css/buscador.css">
+</head>
+
+<body>
+
+    <div id="main" class="container">
+
+        <header>
+            <!-- Header de la página web -->
+            <div id="top-header" class="container">
+                <div id="logo" class="containertop">
+                    <img src="images/logo1.png" alt="">
+                    <h1>Manual Servidores</h1>
+                </div>
+                <div id="nombre" class="containertop">
+
+                </div>
+                <div id="buscador" class="containertop">
+                    <div id='search-box'>
+                        <form action='/search' id='search-form' method='get' target='_top'>
+                            <input id='search-text' name='q' placeholder='Escribe lo que buscas' type='text' />
+                            <button id='search-button' type='submit'><span>Buscar</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-header" class="container">
+                <nav id="menu-header">
+                    <a href="index.html">Apache Tomcat</a>
+                    <a href="wildfly.html">WildFly</a>
+                    <a href="glassfish.html">GlassFish</a>
+                    <a href="#">Comunidad</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Cuerpo de la página web -->
+        <main>
+            <div id="body" class="container">
+                <nav id="izquierda">
+                    <a href="#">Inicio</a>
+                    <a href="#caracteristicas">Características</a>
+                    <a href="#instalacion">Instalación</a>
+                </nav>
+
+                <div id="info" class="container">
+
+                    <section id="inicio">
+                        <h1>Inicio</h1>
+                        <p>
+                            GlassFish es un servidor de aplicaciones de software libre desarrollado por Sun
+                            Microsystems,
+                            compañía adquirida por Oracle Corporation, que implementa las tecnologías definidas en la
+                            plataforma Java EE y permite ejecutar aplicaciones que siguen esta especificación.
+                        </p>
+                    </section>
+
+                    <section id="caracteristicas">
+                        <h1>Características</h1>
+
+                        <ol id="lista2">
+                            <li>
+                                <p>
+                                    Compatibilidad con Apache Web Server mediante el complemento mod_jk
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Compatibilidad con JSF 1.2_13
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Compatibilidad con Jersey 1.0.3
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Compatibilidad con Sun GlassFish Message Queue 4.4
+                                </p>
+                            </li>
+                        </ol>
+
+                    </section>
+
+                    <section id="instalacion">
+                        <h1>Instalación</h1>
+
+                        <ol id="lista5">
+                            <li>
+                                <p>
+                                    En esta ocasión veremos cómo instalar GlassFish en Ubuntu 22.04 LTS Focal Fossa paso
+                                    a paso, de forma que puedas utilizar tu servidor o VPS Ubuntu para desplegar
+                                    aplicaciones Java en línea basadas en las especificaciones de la plataforma Jakarta
+                                    EE 9.1.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Primero necesitaremos alguna herramienta que obtendremos desde los repositorios de
+                                    Ubuntu 22.04, por lo que actualizamos las listas de paquetes:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo apt update</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/1-comando.PNG" alt="">
+                                </div>
+
+                                <p>
+                                    E instalamos los paquetes necesarios:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo apt install -y unzip wget</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/2-comando.PNG" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Vamos a descargar GlassFish para Ubuntu 20.04 LTS desde el sitio web del proyecto,
+                                    donde buscaremos el último lanzamiento oficial (el que está etiquetado como
+                                    «Latest«), descartando las versiones de prueba más recientes (etiquetadas como
+                                    «Pre-release«):
+                                </p>
+                                <p>
+                                    De entre las descargas disponibles elegiremos el paquete con formato .zip, que
+                                    podemos descargar desde el navegador o desde consola con alguna herramienta como
+                                    wget:
+                                </p>
+                                <div class="code">
+                                    <code>$ wget https://github.com/eclipse-ee4j/glassfish/releases/download/6.2.5/glassfish-6.2.5.zip</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/3-comando.PNG" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Para instalar GlassFish en Ubuntu 22.04 LTS Focal Fossa en primer lugar
+                                    descomprimiremos el archivo que acabamos de descargar en su ubicación definitiva:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo unzip -q glassfish-6.2.5.zip -d /opt/</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/4-comando.PNG" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Ahora debemos instalar el JDK de Java:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo apt install openjdk-11-jdk</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/5-comando.PNG" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Comprobamos la version instalada:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ java -version</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/6-comando.PNG" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Editamos el archivo .bashrc para añadir los PATH necesarios
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo nano ~/.bashrc</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/8-comando.PNG" alt="">
+                                </div>
+
+                                <p>
+                                    Una vez dentro pondremos al final del archivo lo siguiente:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64</code>
+                                </div>
+
+                                <div class="code">
+                                    <code>$ export PATH=$PATH:$JAVA_HOME/bin</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/7-comando.PNG" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Actualizamos con lo siguiente:
+                                </p>
+                                <div class="code">
+                                    <code>$ source ~/.bashrc</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/9-comando.PNG" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Con solo este paso, la plataforma queda lista para ser manejada a través de sus
+                                    comandos de administración. Por ejemplo, para iniciar la plataforma:
+                                </p>
+                                <div class="code">
+                                    <code>$ sudo /opt/glassfish6/bin/asadmin start-domain</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/10-comando.PNG" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Si tienes activado el firewall UFW de Ubuntu 22.04 y quieres acceder a GlassFish
+                                    desde red, será necesario añadir algunas reglas sobre los puertos principales.
+                                </p>
+                                <p>
+                                    Para el sitio web se trataría sel puerto 8080 TCP si trabajamos con conexiones HTTP
+                                    estándar:
+                                </p>
+                                <div class="code">
+                                    <code>$ sudo ufw allow 8080/tcp</code>
+                                </div>
+
+                                <p>
+                                    Y para la consola de administración, el puerto 4848 TCP:
+                                </p>
+
+                                <div class="code">
+                                    <code>$ sudo ufw allow 4848/tcp</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/11-comando.PNG" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    Ya lo tendriamos listo para abrirlo desde nuestro navegador,
+                                    para ello introduciremos nuestra IP junto al puerto 8080 o
+                                    con localhost junto al puerto 8080
+                                </p>
+                                <div class="code">
+                                    <code>localhost:8080</code>
+                                </div>
+
+                                <div class="imagen">
+                                    <img src="images/glassfish/12-comando.PNG" alt="">
+                                </div>
+                            </li>
+                        </ol>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Footer de la págna web-->
+            <div id="footer" class="container"></div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
