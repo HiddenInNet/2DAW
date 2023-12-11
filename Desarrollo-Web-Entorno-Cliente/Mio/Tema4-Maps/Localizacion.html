@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localizacion</title>
+
+    <style>
+        div#mapa {
+            width: 700px;
+            height: 700px;
+        }
+    </style>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAHvVvhOATHsH61rPzwALxhWbgf_Ibk5yU">
+    </script>
+
+    <script>
+
+        function cargarMapa() {
+
+            // Seleccionamos el div donde tenemos el mapa
+            var divMapa = document.querySelector("#mapa");
+
+            // Guardamos la posicion (el centro) en una variable
+            // Tenemos 2 formas para hacerlo:
+            var centro = new google.maps.LatLng(37.41134051634971, -5.983433420925049);
+            //var centro2 = new { lat: 37.874327, lng: -0.756041 };
+
+            // Creamos las opciones
+            var opciones = {
+                center: centro,
+                zoom: 17
+            };
+
+            // Dibujamos el mapa
+            var mapa = new google.maps.Map(divMapa, opciones);
+
+            // Le colocamos un marcador
+            var marcador = new google.maps.Marker({
+                position: centro,
+                map: mapa,
+                title: "mi casa",
+                animation: google.maps.Animation.BOUNCE
+            })
+
+            // Le ponemos ventanas
+            var infowindow = new google.maps.InfoWindow({
+                map: mapa,
+                position: new google.maps.LatLng(37.36081923042877, -5.962697325319323),
+                content: "Casa de Manu"
+            })
+        }
+
+        window.onload = cargarMapa;
+
+    </script>
+</head>
+
+
+<body>
+
+    <div id="mapa">
+
+    </div>
+</body>
+
+</html>

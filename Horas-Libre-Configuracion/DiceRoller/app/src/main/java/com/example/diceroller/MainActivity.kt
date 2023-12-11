@@ -57,7 +57,8 @@ fun GreetingPreview() {
 @Preview
 @Composable
 fun  DiceRollerApp(){
-    DiceWithButtonAndImage(modifier = Modifier
+    DiceWithButtonAndImage(
+        modifier = Modifier
         .fillMaxSize()
         .wrapContentSize(Alignment.Center)
     )
@@ -90,7 +91,8 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
         Button(onClick = {
             numeroTiradas++;
             ultimaTirada = result;
-            result = (1..6).random() }) {
+            result = (1..6).random()
+        }) {
             Text(stringResource(R.string.roll))
         }
         Text(text = "Última tirada = $ultimaTirada");
