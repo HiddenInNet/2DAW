@@ -13,7 +13,7 @@
         }
     </style>
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAHvVvhOATHsH61rPzwALxhWbgf_Ibk5yU">
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBY5CuaTmzLXwyn0yWS8NLMVbqWMMSydNc">
     </script>
 
     <script>
@@ -31,7 +31,7 @@
             // Creamos las opciones
             var opciones = {
                 center: centro,
-                zoom: 17
+                zoom: 3
             };
 
             // Dibujamos el mapa
@@ -41,7 +41,7 @@
             var marcador = new google.maps.Marker({
                 position: centro,
                 map: mapa,
-                title: "mi casa",
+                title: "Mi casa",
                 animation: google.maps.Animation.BOUNCE
             })
 
@@ -49,8 +49,49 @@
             var infowindow = new google.maps.InfoWindow({
                 map: mapa,
                 position: new google.maps.LatLng(37.36081923042877, -5.962697325319323),
-                content: "Casa de Manu"
+                content: "Casa manu"
             })
+
+            // Creamos un InfoWindow para cuando vayamos haciendo el zoom
+            var miCasa = new google.maps.InfoWindow({
+                content: "Mi casa"
+            });
+
+            google.maps.event.addListener(marcador, "click", function () {
+                miCasa.open(mapa, marcador);
+                mapa.setZoom(mapa.getZoom() + 1);
+
+                var zoomChange = 4;
+
+                var zoomAntes = mapa.getZoom();
+
+                mapa.setZoom(mapa.getZoom() + zoomChange);
+
+                if (mapa.getZoom() == zoomAntes) {
+                    zoomChange *= -1;
+                    mapa.setZoom(mapa.getZoom() + zoomChange);
+                }
+
+                mapa.setCenter(marcador.getPosition());
+            });
+
+            google.maps.event.addListener(mapa, "click", function (e) {
+                console.log("Latitud: " + e.latLng.lat())
+                console.log("Longitud: " + e.latLng.lng())
+                crearVentana(e.latLng, mapa);
+            });
+
+            function crearVentana(pos, mapa) {
+                var infowindow = new google.maps.InfoWindow({
+                    position: pos,
+                    map: mapa,
+                    content: "Latitud: " + pos.lat() + "<br/> Longitud: " + pos.lng()
+                })
+
+                setTimeout(function () {
+                    infowindow.close();
+                }, 1000)
+            }
         }
 
         window.onload = cargarMapa;
