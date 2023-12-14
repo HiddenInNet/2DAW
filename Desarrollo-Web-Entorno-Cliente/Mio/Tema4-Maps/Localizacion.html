@@ -75,23 +75,31 @@
                 mapa.setCenter(marcador.getPosition());
             });
 
+            var infoWindowSolo = new google.maps.InfoWindow();
+
             google.maps.event.addListener(mapa, "click", function (e) {
-                console.log("Latitud: " + e.latLng.lat())
-                console.log("Longitud: " + e.latLng.lng())
-                crearVentana(e.latLng, mapa);
-            });
+                infoWindowSolo.setMap(mapa);
+                infoWindowSolo.setPosition(e.latLng);
+                infoWindowSolo.setContent(`Longitud: ${e.latLng.lat()} , ${e.latLng.lng()}`);
+            })
 
-            function crearVentana(pos, mapa) {
-                var infowindow = new google.maps.InfoWindow({
-                    position: pos,
-                    map: mapa,
-                    content: "Latitud: " + pos.lat() + "<br/> Longitud: " + pos.lng()
-                })
+            // google.maps.event.addListener(mapa, "click", function (e) {
+            //     console.log("Latitud: " + e.latLng.lat())
+            //     console.log("Longitud: " + e.latLng.lng())
+            //     crearVentana(e.latLng, mapa);
+            // });
 
-                setTimeout(function () {
-                    infowindow.close();
-                }, 1000)
-            }
+            // function crearVentana(pos, mapa) {
+            //     var infowindow = new google.maps.InfoWindow({
+            //         position: pos,
+            //         map: mapa,
+            //         content: "Latitud: " + pos.lat() + "<br/> Longitud: " + pos.lng()
+            //     })
+
+            //     setTimeout(function () {
+            //         infowindow.close();
+            //     }, 1000)
+            // }
         }
 
         window.onload = cargarMapa;
