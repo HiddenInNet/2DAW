@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div#mapa {
+            width: 700px;
+            height: 700px;
+        }
+    </style>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBY5CuaTmzLXwyn0yWS8NLMVbqWMMSydNc">
+    </script>
+
+    <script>
+
+        function LeerFichero(e) {
+            console.log(`e.target.files`);
+            console.log(e.target.files);
+            var fichero = e.target.files[0];
+
+
+            function ConvertirAXML(texto) {
+                var xml = new DOMParser().parseFromString(texto, "text/xml");
+                console.log("xml: ", xml);
+
+                return xml;
+            }
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                TratarFicheroXML(ConvertirAXML(reader.result))
+
+            }
+
+            reader.readAsText(fichero);
+
+
+        }
+
+        function TratarFicheroXML(xml) {
+            var sal = document.querySelector("#sal");
+            var puntos = xml.getElementsByTagName("trkpt");
+
+            var mapa = crearMapa();
+
+            alert("Numero de puntos: " + puntos.length);
+            sal.innerHTML += "<p>Listado de puntos:</p>"
+
+            var latitud, longitud;
+            for (var i = 0; i < puntos.length; i++) {
+                latitud = puntos[i].getAttributeNode("lat").nodeValue;
+                longitud = puntos[i].getAttributeNode("lon").nodeValue;
+
+                var marcador = new google.maps.Marker({
+                    position: new google.maps.LatLng(latitud, longitud),
+                    map: mapa,
+                    title: "Ruta",
+                    animation: google.maps.Animation.BOUNCE
+                })
+
+                sal.innerHTML += `latitud: ${latitud}  longitud: ${longitud} <br>`;
+            }
+        }
+
+        const tratarFichero = (datos) => {
+            console.log("datos: ", datos);
+        }
+
+        window.onload = function () {
+            document.querySelector("#id_fichero").addEventListener('change', LeerFichero, false);
+
+        }
+
+        function crearMapa() {
+            var divMapa = document.querySelector("#mapa");
+
+            var centro = new google.maps.LatLng(37.41134051634971, -5.983433420925049);
+
+            // Creamos las opciones
+            var opciones = {
+                center: centro,
+                zoom: 3
+            };
+
+            // Dibujamos el mapa
+            var mapa = new google.maps.Map(divMapa, opciones);
+
+            return mapa;
+        }
+    </script>
+</head>
+
+<body>
+    <p>
+        <label for="id_fichero">Selecciona el fichero a leer</label><br>
+        <input type="file" id="id_fichero">
+    </p>
+
+    <p>
+    <div id="mapa">
+
+    </div>
+    </p>
+
+    <p>
+    <div id="sal">
+        Aqui os pongo el fichero
+    </div>
+    </p>
+</body>
+
+</html>
