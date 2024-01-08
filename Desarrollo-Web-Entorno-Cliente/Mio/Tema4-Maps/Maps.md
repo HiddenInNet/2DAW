@@ -36,7 +36,7 @@ y las opciones que le vamos a pasar al constructor del mapa.
     // el mapa, creamos las opciones
 
     var opciones = {
-        center = centro,    // El centro que hemos establecido
+        center: centro,     // El centro que hemos establecido
         zoom: 3             // Cantidad de zoom que tendra al iniciar
     }
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distancia</title>
+
+    <style>
+        div#mapa {
+            width: 700px;
+            height: 700px;
+        }
+    </style>
+
+    <script type="text/javascript"
+        src="http://maps.google.com/maps/api/js?libraries=geometry&key=AIzaSyBY5CuaTmzLXwyn0yWS8NLMVbqWMMSydNc"></script>
+
+    <script>
+
+        function cargarMapa() {
+            var divMapa = document.querySelector("#mapa");
+
+            var p1 = new google.maps.LatLng(37.41134051634971, -5.983433420925049);
+            var p2 = new google.maps.LatLng(37.38746877135431, -5.997572929463355);
+
+            var opciones = {
+                center: p1,         // El centro que hemos establecido
+                zoom: 3             // Cantidad de zoom que tendra al iniciar
+            }
+
+            // Por ultimo creamos el mapa
+            var mapa = new google.maps.Map(divMapa, opciones);
+
+            var marcador1 = new google.maps.Marker({
+                position: p1,
+                map: mapa,
+                title: "P1"
+            });
+
+            var marcador2 = new google.maps.Marker({
+                position: p2,
+                map: mapa,
+                title: "P2"
+            });
+
+
+            // Calculamos la distancia
+            var distancia = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
+            alert(`distancia = ${distancia.toFixed(2)} metros`)
+
+            var ruta = new Array();
+            ruta.push(p1);
+            ruta.push(p2);
+
+            // Pintamos la ruta
+            var pintada = new google.maps.Polyline({
+                path: ruta,
+                map: mapa,
+                geodesic: true,
+                strokecolor: "#FF0000",
+                strokeOpacity: 1.0,
+                strokeWeight: 4,
+                clickable: true
+            })
+        }
+
+        window.onload = function () {
+            cargarMapa();
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="mapa">
+
+    </div>
+</body>
+
+</html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Distancia</title>
 
     <style>
         div#mapa {
@@ -13,16 +13,30 @@
         }
     </style>
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBY5CuaTmzLXwyn0yWS8NLMVbqWMMSydNc">
-    </script>
+    <script type="text/javascript"
+        src="http://maps.google.com/maps/api/js?libraries=geometry&key=AIzaSyBY5CuaTmzLXwyn0yWS8NLMVbqWMMSydNc"></script>
 
     <script>
 
-        function LeerFichero(e) {
-            console.log(`e.target.files`);
-            console.log(e.target.files);
-            var fichero = e.target.files[0];
+        function crearMapa() {
 
+            var divMapa = document.querySelector("#mapa");
+
+            var centro = new google.maps.LatLng(37.41134051634971, -5.983433420925049);
+
+            var opciones = {
+                center: centro,         // El centro que hemos establecido
+                zoom: 3             // Cantidad de zoom que tendra al iniciar
+            }
+
+            // Por ultimo creamos el mapa
+            var mapa = new google.maps.Map(divMapa, opciones);
+        }
+
+        function LeerFichero() {
+
+            console.log(`e.target.files = ${e.target.files}`);
+            var fichero = e.target.files[0];
 
             function ConvertirAXML(texto) {
                 var xml = new DOMParser().parseFromString(texto, "text/xml");
@@ -35,12 +49,9 @@
 
             reader.onload = function (e) {
                 TratarFicheroXML(ConvertirAXML(reader.result))
-
             }
 
             reader.readAsText(fichero);
-
-
         }
 
         function TratarFicheroXML(xml) {
@@ -61,57 +72,32 @@
                     position: new google.maps.LatLng(latitud, longitud),
                     map: mapa,
                     title: "Ruta",
-                    //animation: google.maps.Animation.BOUNCE
+                    animation: google.maps.Animation.BOUNCE
                 })
 
                 sal.innerHTML += `latitud: ${latitud}  longitud: ${longitud} <br>`;
             }
         }
 
-        const tratarFichero = (datos) => {
-            console.log("datos: ", datos);
-        }
-
         window.onload = function () {
+
             document.querySelector("#id_fichero").addEventListener('change', LeerFichero, false);
         }
 
-        function crearMapa() {
-            var divMapa = document.querySelector("#mapa");
-
-            var centro = new google.maps.LatLng(37.41134051634971, -5.983433420925049);
-
-            // Creamos las opciones
-            var opciones = {
-                center: centro,
-                zoom: 3
-            };
-
-            // Dibujamos el mapa
-            var mapa = new google.maps.Map(divMapa, opciones);
-
-            return mapa;
-        }
     </script>
 </head>
 
 <body>
+
     <p>
         <label for="id_fichero">Selecciona el fichero a leer</label><br>
         <input type="file" id="id_fichero">
     </p>
 
-    <p>
     <div id="mapa">
 
     </div>
-    </p>
-
-    <p>
-    <div id="sal">
-        Aqui os pongo el fichero
-    </div>
-    </p>
+    <div id="sal"></div>
 </body>
 
 </html>
