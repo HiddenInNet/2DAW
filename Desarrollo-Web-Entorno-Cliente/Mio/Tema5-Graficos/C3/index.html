@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Load c3.css -->
+    <link href="c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="d3-5.8.2.min.js" charset="utf-8"></script>
+    <script src="c3.min.js"></script>
+
+    <script>
+        var rutas = new Array();
+        function Leer_Fichero(e) {
+            console.log("e.target.fies: ", e.target.files);
+            var fichero = e.target.files[0];
+            var reader = new FileReader();
+
+            function Convertir_a_XML(texto) {
+                var xml = new DOMParser().parseFromString(texto, "text/xml");
+                console.log("xml: ", xml);
+                return xml;
+            }
+
+            reader.onload = function (e) {
+                tratarXML(Convertir_a_XML(reader.result));
+            }
+            reader.readAsText(fichero);
+        }
+
+        const tratarXML = (xml) => {
+            var puntos = xml.getElementsByTagName("trkpt");
+            //    alert("Numero de puntos: " + puntos.length);
+            var elevacion;
+
+            var ruta = new Array();
+            ruta.push(xml.getElementsByTagName("name").item(0).firstChild.data);
+            for (var i = 0; i < puntos.length; i++) {
+                //obtenemos la elevacion del punto de la ruta
+                elevacion = parseFloat(puntos[i].getElementsByTagName("ele").item(0).firstChild.data);
+                // Añado la elevacion a la ruta: 
+                ruta.push(elevacion);
+            }
+            console.log(ruta);
+            rutas.push(ruta);
+            pintarGrafico();
+        }
+
+        const pintarGrafico = () => {
+            var chart = c3.generate({
+                bindto: '#grafico',
+                data: {
+                    columns: rutas,
+                }
+            });
+        }
+
+        window.onload = function () {
+            document.getElementById("id_fichero").addEventListener('change', Leer_Fichero, false);
+            pintarGrafico();
+        }
+    </script>
+
+    <style>
+        #grafico {
+            width: 80%;
+            height: 500px;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <label for="input">Fichero: </label>
+    <input type="file" id="id_fichero">
+
+    <p>Ejemplo de grafico</p>
+    <div id="grafico"></div>
+</body>
+
+</html>
