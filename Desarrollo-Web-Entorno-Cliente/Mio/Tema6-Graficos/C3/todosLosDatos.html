@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculos</title>
+
+    <style>
+        .grafico {
+            width: 80%;
+            height: 500px;
+            border: 1px solid black;
+        }
+    </style>
+
+    <!-- Load c3.css -->
+    <link href="/c3-0.7.20/c3-0.7.20/c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="/c3-0.7.20/c3-0.7.20/docs/js/d3-5.8.2.min.js" charset="utf-8"></script>
+    <script src="/c3-0.7.20/c3-0.7.20/c3.min.js"></script>
+
+    <script type="text/javascript"
+        src="http://maps.google.com/maps/api/js?libraries=geometry&key=AIzaSyBY5CuaTmzLXwyn0yWS8NLMVbqWMMSydNc"></script>
+
+    <script>
+
+        var rutas = new Array();
+        var distancias = new Array();
+        var velocidades = new Array();
+
+        function LeerFichero(e) {
+
+            var fichero = e.target.files[0];
+            var reader = new FileReader();
+
+            console.log("fichero xml:", fichero);
+
+            function Convertir_a_XML(texto) {
+                var xml = new DOMParser().parseFromString(texto, "text/xml");
+                return xml;
+            }
+
+            reader.onload = function (e) {
+                tratarXML(Convertir_a_XML(reader.result));
+            }
+            reader.readAsText(fichero);
+        }
+
+        //////////////////////////////////////
+
+        const tratarXML = (xml) => {
+            var puntos = xml.getElementsByTagName("trkpt");
+            console.log(xml)
+
+            var elevacion;
+
+            //ruta.push(xml.getElementsByTagName("name").item(0).firstChild.data);
+
+            for (var i = 0; i < puntos.length; i++) {
+                //obtenemos la elevacion del punto de la ruta
+                elevacion = parseFloat(puntos[i].getElementsByTagName("ele").item(0).firstChild.data);
+                // Añado la elevacion a la ruta: 
+                rutas.push(elevacion);
+            }
+
+            calcularDistancia(puntos);
+            calcularVelocidad();
+            pintarGrafico('#graficoAltura', new Array(rutas));
+            pintarGrafico('#graficoDistancia', new Array(distancias));
+            pintarGrafico('#graficoVelocidad', velocidades);
+        }
+
+        function calcularVelocidad() {
+
+            // Completar 
+        }
+
+        function calcularDistancia(puntos) {
+
+            console.log("puntos", puntos)
+            var distancia;
+
+            for (var i = 0; i < puntos.length - 1; i++) {
+
+                var puntoA = {
+                    lat: parseFloat(puntos[i].getAttributeNode("lat").nodeValue),
+                    lng: parseFloat(puntos[i].getAttributeNode("lon").nodeValue)
+                }
+
+                console.log("PuntoA: ", puntoA)
+
+                var puntoB = {
+                    lat: parseFloat(puntos[i + 1].getAttributeNode("lat").nodeValue),
+                    lng: parseFloat(puntos[i + 1].getAttributeNode("lon").nodeValue)
+                }
+
+                console.log("PuntoB: ", puntoB)
+
+                distancia = google.maps.geometry.spherical.computeDistanceBetween(puntoA, puntoB);
+
+                distancias.push(distancia);
+
+            }
+
+            console.log("Distancias: ", distancias);
+        }
+
+        // Pintar el grafico
+        const pintarGrafico = (div, datos) => {
+            var chart = c3.generate({
+                bindto: div,
+                data: {
+                    columns: datos
+                }
+            });
+        }
+
+        window.onload = function () {
+            document.querySelector("#id_fichero").addEventListener('change', LeerFichero, false)
+            pintarGrafico();
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <label for="input">Fichero: </label>
+    <input type="file" id="id_fichero">
+
+    <p>Grafico de altura</p>
+    <div id="graficoAltura" class="grafico"></div>
+
+    <p>Grafico de distancia</p>
+    <div id="graficoDistancia" class="grafico"></div>
+
+    <p>Grafico de velocidad</p>
+    <div id="graficoDeVelocidad" class="grafico"></div>
+
+</body>
+
+</html>
