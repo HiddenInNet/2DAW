@@ -6,58 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
 
-    <style type="text/css">
-        h3 {
-            color: red;
-        }
-
-        /* CSS para el formulario:   */
-        .formPersonas {
-            visibility: hidden;
-            position: absolute;
-            top: 20%;
-            left: 20%;
-            z-index: 11;
-            background-color: pink;
-            border: 2px solid maroon;
-            border-radius: 15px;
-            padding: 1em;
-            color: red;
-
-            /*	opacity:0;   */
-            /*	transition: all 1s;   */
-        }
-
-        .formPersonas div label {
-            display: block;
-            margin-top: .5em;
-        }
-
-        .formPersonas .btn {
-            display: block;
-            margin-top: 1em;
-        }
-
-
-        .ver {
-            visibility: visible;
-            opacity: 1;
-        }
-    </style>
-
+    <link rel="stylesheet" href="css/index.css">
     <script src="jsStore/jsstore.min.js"></script>
     <script src="jsStore/jsstore.worker.min.js"></script>
     <script src="BD.js"></script>
 
     <script>
 
+        // funcion para leer una imagen base 64 que pasemos a traves de un input
+        function leerImagen() {
+            var fichero = this.files[0];
+            fImagen = this.files[0];
+
+            console.log(fImagen);
+
+            var reader = new FileReader();
+            reader.onload = function () {
+                console.log("contenido", reader.result);
+                document.querySelector("#imagen").src = reader.result;
+            }
+
+            reader.readAsDataURL(fichero);
+        }
+
         function createDatabase() {
             var dataBase = new BD();
         }
 
+        function mostrarFormulario() {
+            document.querySelector("#formPersonas").style.visibility = "visible";
+        }
+
+        function cancelarForm() {
+            document.querySelector("#formPersonas").style.visibility = "hidden";
+        }
+
+        function anadeForm() {
+
+        }
 
         window.onload = function () {
             createDatabase();
+            document.querySelector("#btNuevaPersona").addEventListener("click", mostrarFormulario);
+            document.querySelector("#btAnade").addEventListener('click', anadeForm);
+            document.querySelector("#btCancelar").addEventListener('click', cancelarForm);
+            document.querySelector("#imagenPersona").addEventListener('change', leerImagen);
         }
     </script>
 </head>
@@ -80,6 +73,22 @@
                 <label for="apellidos">Apellidos</label>
                 <input type="text" id="apellidos" size="40" value="García Gomariz" />
             </div>
+            <div>
+                <label for="fecha">Fecha</label>
+                <input type="date" id="fecha" size="40" />
+            </div>
+            <div>
+                <label for="estatura">Estatura</label>
+                <input type="text" id="estatura" size="40" value="1.80" />
+            </div>
+            <div>
+                <label for="imagenPersona">Imagen</label>
+                <!-- Para obtener el contenido de un input "file" usamos .src en vez de .value -->
+                <input type="file" id="imagenPersona" size="40" />
+                <div id="divImagen">
+                    <img src="" id="imagen">
+                </div>
+            </div>
             <div class="btn">
                 <button id="btAnade">Añadir </button>
                 <button id="btCancelar">Cancelar </button>
@@ -98,8 +107,12 @@
             <th>DNI</th>
             <th>NOMBRE</th>
             <th>APELLIDOS</th>
-            <th>Borrar</th>
-            <th>Editar</th>
+            <th>F NACIMIENTO</th>
+            <th>ESTATURA</th>
+            <th>IMAGEN BLOB</th>
+            <th>IMAGEN 64</th>
+            <th>BORRAR</th>
+            <th>MODIFICAR</th>
         </tr>
 
         <tbody id="filas_tabla">

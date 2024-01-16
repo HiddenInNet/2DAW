@@ -1,0 +1,48 @@
+h3 {
+    color: red;
+}
+
+/* CSS para el formulario:   */
+.formPersonas {
+    visibility: hidden;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    z-index: 11;
+    background-color: pink;
+    border: 2px solid maroon;
+    border-radius: 15px;
+    padding: 1em;
+    color: red;
+
+    /*	opacity:0;   */
+    /*	transition: all 1s;   */
+}
+
+.formPersonas div label {
+    display: block;
+    margin-top: .5em;
+}
+
+.formPersonas .btn {
+    display: block;
+    margin-top: 1em;
+}
+
+.ver {
+    visibility: visible;
+    opacity: 1;
+}
+
+#tabla_personas {
+    padding: 10px;
+    margin: 5px;
+}
+
+th, td {
+    padding: 10px;
+}
+
+td {
+    height: 4em;
+}
