@@ -1,0 +1,7 @@
+<form>
+    <input type="text" name="query" [(ngModel)]="query" placeholder="{{placeholder}}">
+    <input type="submit" value="{{labelButton}}" (click)="search()">
+    <p>Parametro de búsqueda {{query}}</p>
+</form>
+
+<p>Resultado de a busqueda: {{result}}</p>

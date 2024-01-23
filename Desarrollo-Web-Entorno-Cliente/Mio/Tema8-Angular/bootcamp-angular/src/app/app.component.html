@@ -1,4 +1,12 @@
 <p>El sevilla es una mierda: {{titulo}}</p>
 <p>El objeto tiene {{miObjeto.edad}} años</p>
 
+<hr>
+<h1>SearchComponent</h1>
+<app-search [labelButton]="'labelBuscar'" [placeholder]="placeHolderBuscar" (searchEvent)="search($event)">
+</app-search>
+<hr>
+
+<p>El resultado es: {{msgEventSearch}}</p>
+
 <router-outlet />
