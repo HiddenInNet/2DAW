@@ -1,0 +1,33 @@
+<h1>listado works!</h1>
+
+<div>
+    <table id="personajes" class="estilo_Tabla_1">
+        <caption>Personajes STAR WARS</caption>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Altura</th>
+                <th>Peso</th>
+                <th>Nacimiento</th>
+                <th>Género</th>
+                <th>Homeworld</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoPersonajes">
+            <tr *ngFor="let p of listaPer">
+                <td>{{p.name}}</td>
+                <td>{{p.height}}</td>
+                <td>{{p.mass}}</td>
+                <td>{{p.birth_year}}</td>
+                <td>{{p.gender}}</td>
+                <td><a (click)="mostrarDatosPlaneta(p.homeworld, $event)" href="{{p.homeworld}}?format=json">{{p.homeworld}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <div *ngIf="datosPlaneta">
+            <app-detalles [planeta]="datosPlaneta"></app-detalles>
+        </div>
+    </div>
+</div>
