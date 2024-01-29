@@ -1,0 +1,41 @@
+<p>listado works!</p>
+
+<div>
+    <table id="personajes" class="estilo_Tabla_1">
+        <caption>Personajes STAR WARS</caption>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Altura</th>
+                <th>Peso</th>
+                <th>Nacimiento</th>
+                <th>Género</th>
+                <th>Homeworld</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoPersonajes">
+            @for (p of listaPer; track $index){
+            <tr>
+                <td>{{p.name}}</td>
+                <td>{{p.height}}</td>
+                <td>{{p.mass}}</td>
+                <td>{{p.birth_year}}</td>
+                <td>{{p.gender}}</td>
+                <td><a (click)="mostrarDatosPlaneta(p.homeworld, $event)"
+                        href="{{p.homeworld}}?format=json">{{p.homeworld}}</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (datosPlaneta) {
+    <div>
+        <div>
+            <app-detalles [planeta]="datosPlaneta"></app-detalles>
+        </div>
+    </div>
+    } @else {
+    <p>Selecciona un mundo para ver su detalle</p>
+    }
+
+</div>
