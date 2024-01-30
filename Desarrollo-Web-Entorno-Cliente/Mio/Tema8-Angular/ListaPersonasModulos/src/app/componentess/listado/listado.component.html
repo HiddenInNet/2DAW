@@ -1,0 +1,24 @@
+<div>
+    <a class="btn btn-primary" routerLink="/personas-add/-1" role="button">Añadir persona</a>
+    <span> | </span>
+    <button type="button" class="btn btn-primary" (click)="iraNuevaPersona()">Añadir persona</button>
+</div>
+
+<div>
+    <table id="tabla_personas" class="table">
+        <thead>
+            <th>ID</th>
+            <th>DNI</th>
+            <th>NOMBRE</th>
+            <th>APELLIDOS</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of listaPer">
+                <td>{{p.id}}</td>
+                <td>{{p.dni}}</td>
+                <td>{{p.nombre}}</td>
+                <td>{{p.apellidos}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            font-size: 44px;
+            color: blue;
+        }
+
+        .cambio {
+            font-size: 60px;
+        }
+    </style>
+
+    <script src="../jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("div").click(function () {
+
+                //$(this).hide("slow");     // Para ocultarlod espacio
+
+                $(this).hide(2000);         // para ocultarlo con un tiempo de forma personalizada (2 segundos)
+
+                $(this).show(2000, function () {    // para mostrar un elemento y le añadimos una funcion cuando termine
+                    $(this).addClass("cambio");
+                });
+
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <h1>Ejemplo de jQuery</h1>
+    <p>
+    <div>Pulsame para ocultarme!!</div>
+    </p>
+</body>
+
+</html>
