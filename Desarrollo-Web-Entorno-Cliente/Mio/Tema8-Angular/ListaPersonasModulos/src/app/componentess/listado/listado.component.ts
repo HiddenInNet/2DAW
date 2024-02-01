@@ -24,4 +24,20 @@ export class ListadoComponent {
 
     this.ruta.navigate(['personas-add', -1])
   }
+
+  iraModificarPersona(personaId: number) {
+
+    this.ruta.navigate(['personas-add', personaId]);
+  }
+
+  iraBorrarPersona(persona: Persona) {
+
+    var mensaje = `¿Quieres borrar a ${persona.nombre} ${persona.apellidos}?`;
+
+    if (confirm(mensaje)) {
+      this.peti.delPersona(persona).subscribe(datos => {
+        this.listaPer = datos;
+      })
+    }
+  }
 }

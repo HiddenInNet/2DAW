@@ -18,6 +18,8 @@
                 <td>{{p.dni}}</td>
                 <td>{{p.nombre}}</td>
                 <td>{{p.apellidos}}</td>
+                <td><input type="button" class="btn btn-primary" (click)="iraModificarPersona(p.id)" value="MODIFICAR"></td>
+                <td><input type="button" class="btn btn-primary" (click)="iraBorrarPersona(p)" value="BORRAR"></td>
             </tr>
         </tbody>
     </table>
