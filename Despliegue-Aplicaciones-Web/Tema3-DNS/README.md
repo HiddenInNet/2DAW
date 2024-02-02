@@ -115,3 +115,31 @@ mail.servidor.sev.      IN  MX  10      correo.servidor.sev.
 Una vez tenemos configurada la zona directa pasremos a configurar la zona inversa, para ello configuraremos el fichero de la siguiente forma:
 
 ``$ sudo nano /etc/bind/inversa.123.75.75``
+
+Donde pondremos lo siguiente:
+
+```
+$ttl 3600
+75.75.123.in-addr.arpa  IN  SOA   david.  info.servidor.sev. (
+        fechaHora
+        3600
+        600
+        1209600
+        3600)
+
+75.75.123.in-addr.arpa.       IN    NS    david.
+250.75.75.123.in-addr.arpa.   IN    PTR   david.servidor.sev.
+200.75.75.123.in-addr.arpa.   IN    PTR   correo.servidor.sev.
+1.75.75.123.in-addr.arpa.     IN    PTR   equipo1.servidor.sev.
+2.75.75.123.in-addr.arpa.     IN    PTR   equipo2.servidor.sev.
+3.75.75.123.in-addr.arpa.     IN    PTR   equipo3.servidor.sev.
+```
+
+Para checkear las zonas que hemos creado debemos usar los siguientes comandos:
+
+* Para el fichero de configuracion:
+``$ sudo named-checkconf /etc/bind/named.conf.local``
+
+* Para la zona directa e inversa:
+``$ sudo named-checkzone servidor.sev /etc/bind/servidor.sev``
+``$ sudo named-checkzone 75.75.123.in-addr.arpa /etc/bind/inversa.123.75.75``
