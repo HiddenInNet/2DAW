@@ -120,7 +120,7 @@ Donde pondremos lo siguiente:
 
 ```
 $ttl 3600
-75.75.123.in-addr.arpa  IN  SOA   david.  info.servidor.sev. (
+75.75.123.in-addr.arpa.  IN  SOA   david.  info.servidor.sev. (
         fechaHora
         3600
         600
