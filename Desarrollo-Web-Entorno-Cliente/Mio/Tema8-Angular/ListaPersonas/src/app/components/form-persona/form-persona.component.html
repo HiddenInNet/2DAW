@@ -1,0 +1,32 @@
+<h1>{{textoBoton}} Persona</h1>
+
+<div class="container">
+    <form class="form-horizontal" #personaForm="ngForm" (ngSubmit)="onSubmit(personaForm.value)">
+        <div class="mb-3">
+            <label class="form-label" for="dni">DNI: </label>
+            <input class="form-control" required type="text" name="dni" id="dni" [(ngModel)]="persona.dni"
+                #dni="ngModel">
+            <div [hidden]="dni.valid || dni.pristine" class="alert alert-danger">
+                El DNI es inválido
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="nombre">Nombre: </label>
+            <input class="form-control" required type="text" name="nombre" id="nombre" [(ngModel)]="persona.nombre"
+                #nombre="ngModel">
+            <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                El Nombre es inválido
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="apellidos">Apellidos: </label>
+            <input class="form-control" required type="text" name="apellidos" id="apellidos"
+                [(ngModel)]="persona.apellidos" #apellidos="ngModel">
+        </div>
+        <div [hidden]="apellidos.valid || apellidos.pristine" class="alert alert-danger">
+            El Apellido/os es inválido
+        </div>
+        <button class="btn btn-primary">{{textoBoton}}</button>
+    </form>
+</div>

@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { Persona } from '../../modelos/persona';
+import { Persona } from '../../models/persona';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PAjaxService } from '../../servicios/p-ajax.service';
+import { PAjaxService } from '../../services/p-ajax.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form-persona',
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './form-persona.component.html',
   styleUrl: './form-persona.component.css'
 })
