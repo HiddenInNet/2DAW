@@ -1,0 +1,20 @@
+<h1>Consulta de Facturas</h1>
+
+<div>
+    <table id="tabla_personas" class="table">
+        <thead>
+            <th>ID</th>
+            <th>DNI</th>
+            <th>NOMBRE</th>
+            <th>APELLIDOS</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of listaFacturas">
+                <td>{{p.id}}</td>
+                <td><a routerLink="/detalles/{{p.id}}/{{p.numero}}">{{p.numero}}</a></td>
+                <td>{{p.cliente}}</td>
+                <td>{{p.fecha}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

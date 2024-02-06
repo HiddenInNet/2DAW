@@ -1,0 +1,75 @@
+<h2>Detalle de la factura: {{facturaNumero}}</h2>
+
+<div>
+    <table id="tabla_personas" class="table">
+        <thead>
+            <th>ID</th>
+            <th>CANTIDAD</th>
+            <th>CONCEPTO</th>
+            <th>PRECIO</th>
+            <th>TIPO IVA</th>
+            <th>IVA</th>
+            <th>TOTAL</th>
+            <th>EDITAR</th>
+            <th>BORRAR</th>
+        </thead>
+        <tbody>
+            @for (d of detallesFactura; track $index) {
+            <tr>
+                <td>{{d.id}}</td>
+                <td>{{d.cantidad}}</td>
+                <td>{{d.concepto}}</td>
+                <td>{{d.precio | number}}</td>
+                <td>{{d.tipo_iva | number}}</td>
+                <td>{{d.iva}}</td>
+                <td>{{d.total}}</td>
+                <td><input type="button" class="btn btn-primary" (click)="modificarDetalle(d)" value="EDITAR">
+                </td>
+                <td><input type="button" class="btn btn-primary" (click)="borrarDetalle(d)" value="BORRAR"></td>
+            </tr>
+            }
+            <tr>
+                <td>TOTALES:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ivaTotal}}</td>
+                <td>{{totalTotal}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <input type="button" class="btn btn-primary" routerLink="/" value="<== VOLVER"><span> | </span>
+    <input type="button" class="btn btn-primary" (click)="formNuevo()" value="Nuevo detalle">
+
+    @if (formulario) {
+
+        <div class="container">
+            <form class="form-horizontal" #detalleForm="ngForm" (ngSubmit)="onSubmit(detalleForm.value)">
+                <div class="mb-3">
+                    <label class="form-label" for="cantidad">Cantidad: </label>
+                    <input class="form-control" required type="text" name="cantidad" id="cantidad"
+                        [(ngModel)]="detalle.cantidad" #dni="ngModel">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="concepto">Concepto: </label>
+                    <input class="form-control" required type="text" name="concepto" id="concepto"
+                        [(ngModel)]="detalle.concepto" #nombre="ngModel">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="precio">Precio: </label>
+                    <input class="form-control" required type="text" name="precio" id="precio" [(ngModel)]="detalle.precio"
+                        #precio="ngModel">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="tipo_iva">Tipo IVA: </label>
+                    <input class="form-control" required type="text" name="tipo_iva" id="tipo_iva"
+                        [(ngModel)]="detalle.tipo_iva" #tipo_iva="ngModel">
+                </div>
+    
+                <button class="btn btn-primary">Añadir</button>
+            </form>
+        </div>
+    }
+</div>

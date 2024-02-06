@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #mapa {
+            width: 1600px;
+            height: 800px;
+            border: 1px solid black;
+        }
+    </style>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyCH5aAtDT0MkcTIVdkTXWe7LhJiGZmScvA">
+    </script>
+    <script>
+        var banderaZoom = true;
+        //función para cargar el mapa
+        function cargarMapa() {
+            //div del mapa
+            var divMapa = document.getElementById("mapa");
+            //centro del mapa
+            var centro1 = new google.maps.LatLng(37.398594209360496, -5.97208024505943);
+            var casaMesa = { lat: 37.39961835204889, lng: -5.972071538439178 };
+            var casaAbuela = { lat: 37.398033946030466, lng: -5.971508815180534 };
+            var tartessos = { lat: 37.39872044331369, lng: -5.970838573084026 };
+            //opciones del mapa
+            var opciones = {
+                center: centro1,
+                zoom: 17,
+                mapTypeId: 'satellite',
+                //heading: 90,
+                tilt: 0,
+            }
+            //MAPA
+            var mapa = new google.maps.Map(divMapa, opciones);
+            //MARCADOR
+            var marcador = new google.maps.Marker({
+                position: centro1,
+                map: mapa,
+                title: "mi casa",
+                //icon: "asd.png",
+                animation: google.maps.Animation.DROP
+            });
+            //INFOWINDOW
+            var miCasa = new google.maps.InfoWindow()
+            miCasa.setContent('<b>Mi casa</b>')
+
+            google.maps.event.addListener(marcador, "click", function () {
+                if (banderaZoom) {
+                    mapa.setZoom(mapa.getZoom() + 2);
+                    if (mapa.getZoom() > 20) {
+                        mapa.setTilt(60);
+                        miCasa.open(mapa, marcador);
+                        //se desactiva la bandera
+                        banderaZoom = false;
+                    }
+                } else {
+                    mapa.setZoom(mapa.getZoom() - 2);
+                    mapa.setTilt(0);
+                    miCasa.close();
+                }
+                if (mapa.getZoom() < 18) {
+                    //se activa la bandera
+                    banderaZoom = true;
+                }
+            })
+
+            var infoWindowCasaMesa = new google.maps.InfoWindow({
+                map: mapa,
+                position: casaMesa,
+                content: "Casa del Mesa"
+            });
+
+            var infoWindowCasaAbuela = new google.maps.InfoWindow({
+                map: mapa,
+                position: casaAbuela,
+                content: "Casa de mi abuela"
+            });
+
+            var infoWindowTartessos = new google.maps.InfoWindow({
+                map: mapa,
+                position: tartessos,
+                content: "Tartessos"
+            });
+
+        }
+
+        //window onload
+        window.onload = cargarMapa;
+
+    </script>
+</head>
+
+<body>
+    <h2>Google Maps</h2>
+    <div id="mapa"></div>
+</body>
+
+</html>

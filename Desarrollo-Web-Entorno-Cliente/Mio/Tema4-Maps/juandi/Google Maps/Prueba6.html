@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document</title>
+    <style>
+        #mapa {
+            height: 800px;
+            width: 1200px;
+            margin: auto;
+            border: 1px solid black;
+        }
+    </style>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyCH5aAtDT0MkcTIVdkTXWe7LhJiGZmScvA">
+    </script>
+    <script>
+        var mapa;
+        function Leer_Fichero(e) {
+            console.log("e.target.fies: ", e.target.files);
+            var fichero = e.target.files[0];
+            var reader = new FileReader();
+
+            function Convertir_a_XML(texto) {
+                var xml = new DOMParser().parseFromString(texto, "text/xml");
+                console.log("xml: ", xml);
+                return xml;
+            }
+
+            reader.onload = function (e) {
+                tratarXML(Convertir_a_XML(reader.result));
+            }
+            reader.readAsText(fichero);
+        }
+
+        const tratarXML = (xml) => {
+            var sal = document.getElementById("sal");
+            var puntos = xml.getElementsByTagName("trkpt");
+            //    alert("Numero de puntos: " + puntos.length);
+            sal.innerHTML += "<p>Listado de puntos: " + puntos.length + " </p>";
+            var latitud, longitud;
+
+            latitud = parseFloat(puntos[0].getAttributeNode("lat").nodeValue);
+            longitud = parseFloat(puntos[0].getAttributeNode("lon").nodeValue);
+
+            let centro = {
+                lat: latitud,
+                lng: longitud
+
+            }
+            mapa.setCenter(centro);
+            // FORMA 1
+            Array.from(puntos).forEach(punto => {
+                latitud = parseFloat(punto.getAttributeNode("lat").nodeValue);
+                longitud = parseFloat(punto.getAttributeNode("lon").nodeValue);
+                let centro = {
+                    lat: latitud,
+                    lng: longitud
+
+                }
+                //  Creo el  marker: 
+                marcador = new google.maps.Marker({
+                    position: centro,
+                    map: mapa,
+                });
+                console.log(marcador);
+            }
+
+            )
+            // FORMA 2
+            // for (var i = 0; i < puntos.length; i++) {
+            //     latitud = puntos[i].getAttributeNode("lat").nodeValue;
+            //     longitud = puntos[i].getAttributeNode("lon").nodeValue;
+            //     sal.innerHTML += "latitud: " + latitud + "   longitud: " + longitud + "<br>";
+            // }
+        }
+
+        function CargarMapa() {
+            // Creamos una referencia al lugar donde vamos a meter el mapa, para trabajar mas cómodos
+            var divMap = document.getElementById("mapa");
+
+            // Guardamos la posicion (el centro) en una variable:
+            var centro1 = new google.maps.LatLng(37.398594209360496, -5.97208024505943);
+
+            // Creamos las opciones
+            var mapOptions = {
+                center: centro1,
+                zoom: 15,
+                mapTypeId: "satellite"
+                //  LOS TIPOS DE MAPAS
+                /*
+                - "roadmap" muestra la vista del mapa de ruta predeterminado. Este es el tipo de mapa predeterminado.
+                - "satellite" muestra imágenes satelitales de Google Earth.
+                - "terrain" muestra un mapa físico basado en la información del terreno.
+                - "hybrid" muestra una combinación de vistas normales y satelitales.
+                Para modificar el mapTypeId de forma dinámica, usa este código: map.setMapTypeId('terrain');
+                */
+            }
+            //  Dibujamos el mapa
+            mapa = new google.maps.Map(divMap, mapOptions);
+        }
+
+        window.onload = function () {
+            document.getElementById("id_fichero").addEventListener('change', Leer_Fichero, false);
+            CargarMapa();
+        }
+    </script>
+</head>
+
+<body>
+    <p>
+        <label for="id_fichero">Seleciona el fichero a leer:</label> <br>
+        <input type="file" id="id_fichero">
+    </p>
+    <p>
+    <div id="sal">
+        Aqui pongo el contenido del fichero!!
+    </div>
+    </p>
+
+    <div id="mapa"></div>
+</body>
+
+</html>

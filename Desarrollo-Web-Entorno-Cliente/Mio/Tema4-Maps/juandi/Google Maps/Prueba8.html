@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document</title>
+    <style>
+        #mapa {
+            height: 800px;
+            width: 1200px;
+            margin: auto;
+            border: 1px solid black;
+        }
+    </style>
+    <script src="http://maps.google.com/maps/api/js?libraries=geometry&key=AIzaSyCH5aAtDT0MkcTIVdkTXWe7LhJiGZmScvA">
+    </script>
+    <script>
+        var mapa;
+
+        function Leer_Fichero(e) {
+            console.log("e.target.fies: ", e.target.files);
+            var fichero = e.target.files[0];
+            var reader = new FileReader();
+
+            function Convertir_a_XML(texto) {
+                var xml = new DOMParser().parseFromString(texto, "text/xml");
+                console.log("xml: ", xml);
+                return xml;
+            }
+
+            reader.onload = function (e) {
+                tratarXML(Convertir_a_XML(reader.result));
+            }
+            reader.readAsText(fichero);
+        }
+
+        const tratarXML = (xml) => {
+            var sal = document.getElementById("sal");
+            var puntos = xml.getElementsByTagName("trkpt");
+            //    alert("Numero de puntos: " + puntos.length);
+            sal.innerHTML = "<p>Listado de puntos: " + puntos.length + " </p>";
+            var latitud, longitud;
+
+            latitud = parseFloat(puntos[0].getAttributeNode("lat").nodeValue);
+            longitud = parseFloat(puntos[0].getAttributeNode("lon").nodeValue);
+            let centro = {
+                lat: latitud,
+                lng: longitud
+            }
+
+            //Ponemos el centro del mapa
+            mapa.setCenter(centro);
+
+            var ruta = new Array();
+            var distancia = 0;
+
+            //Para el tiempo
+            var tiempoInicial = new Date(puntos[0].getElementsByTagName("time").item(0).firstChild.data);
+            var tiempoFinal = new Date(puntos[puntos.length - 1].getElementsByTagName("time").item(0).firstChild.data);
+            var tiempo = new Date(tiempoFinal - tiempoInicial);
+
+            var tIni = new Date(puntos[0].getElementsByTagName("time").item(0).firstChild.data);
+            //Para la velocidad maxima
+            var vMaxima = 0;
+
+            //Añado a la ruta el primer punto
+            ruta.push(centro);
+            for (var i = 1; i < puntos.length; i++) {
+                //creamos el siguiente punto de la ruta
+                latitud = parseFloat(puntos[i].getAttributeNode("lat").nodeValue);
+                longitud = parseFloat(puntos[i].getAttributeNode("lon").nodeValue);
+                let centro2 = {
+                    lat: latitud,
+                    lng: longitud
+                }
+                // Añado el punto a la ruta: 
+                ruta.push(centro2);
+                // Sumamos la distancia entre ese punto y el anterior
+                distancia = distancia + google.maps.geometry.spherical.computeDistanceBetween(centro, centro2);
+                var dist = google.maps.geometry.spherical.computeDistanceBetween(centro, centro2);
+                // Calculamos el tiempo en llegar desde el punto anterior a este
+                var tFin = new Date(puntos[i].getElementsByTagName("time").item(0).firstChild.data);
+                var t = new Date(tFin - tIni);
+                // Calculamos la velocidad media y comprobamos si es la máxima
+                console.log(dist / 1000);
+                console.log(tiempo.getTime() / (1000 * 60 * 60));
+                var vMed = (dist / 1000) / (t.getTime() / (1000 * 60 * 60));
+                if (vMed > vMaxima) {
+                    vMaxima = vMed;
+                }
+                //Cambiamos el centro anterior al actual y lo mismo con el tiempo
+                centro = centro2;
+                tIni = tFin;
+            }
+
+            //Se dibuja la linea
+            var linea = new google.maps.Polyline({
+                path: ruta,
+                map: mapa,
+                geodesic: true,
+                strokeColor: "#FF0000",
+                strokeOpacity: 1,
+                strokeWeight: 3,
+                clickable: true
+            })
+            //Se escribe la distancia
+            console.log('distancia = ' + distancia + ' metros');
+            if (distancia < 1000) {
+                sal.innerHTML += "<p>Distancia: " + distancia.toFixed(2) + "m </p>";
+            } else {
+                sal.innerHTML += "<p>Distancia: " + (distancia / 1000).toFixed(2) + "km </p>";
+            }
+            //Se escribe el tiempo
+            console.log('tiempo inicial= ' + tiempoInicial);
+            console.log('tiempo final= ' + tiempoFinal);
+            console.log('tiempo total= ' + tiempo.toUTCString());
+            console.log(tiempo.getUTCHours() + ':' + tiempo.getUTCMinutes() + ':' + tiempo.getUTCSeconds());
+            sal.innerHTML += "<p>Tiempo: " + tiempo.getUTCHours() + ':' + tiempo.getUTCMinutes() + ':' + tiempo.getUTCSeconds() + "</p>";
+
+            //Se escribe la velocidad media
+            var vMedia = (distancia / 1000) / (tiempo.getTime() / (1000 * 60 * 60));
+            sal.innerHTML += "<p>Velocidad media: " + vMedia.toFixed(2) + "km/h </p>";
+
+            //Se escribe la velocidad máxima
+            sal.innerHTML += "<p>Velocidad máxima: " + vMaxima.toFixed(2) + "km/h </p>";
+        }
+
+        function CargarMapa() {
+            // Creamos una referencia al lugar donde vamos a meter el mapa, para trabajar mas cómodos
+            var divMap = document.getElementById("mapa");
+
+            // Guardamos la posicion (el centro) en una variable:
+            var centro1 = new google.maps.LatLng(37.398594209360496, -5.97208024505943);
+
+            // Creamos las opciones
+            var mapOptions = {
+                center: centro1,
+                zoom: 15,
+                mapTypeId: "satellite"
+                //  LOS TIPOS DE MAPAS
+                /*
+                - "roadmap" muestra la vista del mapa de ruta predeterminado. Este es el tipo de mapa predeterminado.
+                - "satellite" muestra imágenes satelitales de Google Earth.
+                - "terrain" muestra un mapa físico basado en la información del terreno.
+                - "hybrid" muestra una combinación de vistas normales y satelitales.
+                Para modificar el mapTypeId de forma dinámica, usa este código: map.setMapTypeId('terrain');
+                */
+            }
+            //  Dibujamos el mapa
+            mapa = new google.maps.Map(divMap, mapOptions);
+        }
+
+        window.onload = function () {
+            document.getElementById("id_fichero").addEventListener('change', Leer_Fichero, false);
+            CargarMapa();
+        }
+    </script>
+</head>
+
+<body>
+    <p>
+        <label for="id_fichero">Seleciona el fichero a leer:</label> <br>
+        <input type="file" id="id_fichero">
+    </p>
+    <p>
+    <div id="sal">
+        Aqui pongo el contenido del fichero!!
+    </div>
+    </p>
+
+    <div id="mapa"></div>
+</body>
+
+</html>
