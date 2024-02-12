@@ -41,4 +41,21 @@ export class DetailOwnersComponent {
     });
 
   }
+
+  eliminarOwner(owner: Owner) {
+
+    if (confirm("Estás seguro de que quieres borrar a " + this.owner.firstName + " " + this.owner.lastName)) {
+
+      this.peti.removeOwner(owner).subscribe({
+        next: datos => {
+          console.log("detalles", datos);
+
+          this.ruta.navigate(["/"]);
+
+        },
+        error: error => console.log(error)
+      })
+
+    }
+  }
 }

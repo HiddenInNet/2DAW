@@ -32,4 +32,39 @@ export class OwnerService {
 
     return this.http.post<Owner>(this.url, pa);
   }
+
+  insertOwner(owner: Owner) {
+    console.log("Dentro de insertOwner()");
+
+    let pa = JSON.stringify({
+      accion: "AnadeOwner",
+      owner: owner
+    })
+
+    return this.http.post<Owner>(this.url, pa);
+  }
+
+  updateOwner(owner: Owner) {
+    console.log("Dentro de removeOwner()");
+
+    let pa = JSON.stringify({
+      accion: "ModificaOwner",
+      owner: owner
+    })
+
+    return this.http.post<Owner>(this.url, pa);
+  }
+
+  removeOwner(owner: Owner) {
+
+    console.log("Dentro de removeOwner()");
+
+    let pa = JSON.stringify({
+      accion: "BorraOwner",
+      id: owner.id,
+      listado: "OK"
+    })
+
+    return this.http.post<Owner>(this.url, pa);
+  }
 }

@@ -1,0 +1,28 @@
+<h1>Vets list
+    <button class="btn btn-success" routerLink="/crud-vet/-1">Añadir Owner</button>
+</h1>
+
+<div class="container container-fluid">
+    <table id="ta" class="table table-striped">
+        <thead>
+            <tr class="table-info">
+                <th>NAME</th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (v of vets; track $index) {
+            <tr>
+                <td><a routerLink="/vet/{{v.id}}">{{v.firstName +" "+ v.lastName}}</a></td>
+                <td>{{v.firstName}}</td>
+                <td>{{v.lastName}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="container container-fluid">
+    <button class="btn btn-secondary" routerLink="/">Atrás</button>
+</div>

@@ -1,10 +1,31 @@
 <h1>Propietario</h1>
 
 <div class="container container-fluid">
-    <p>Nombre: {{owner.firstName + " "+owner.lastName}}</p>
-    <p>Direccion: {{owner.address}}</p>
-    <p>Ciudad: {{owner.city}}</p>
-    <p>Telefono: {{owner.telephone}}</p>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td><b>Nombre: </b></td>
+                <td>{{owner.firstName + " " +owner.lastName}}</td>
+            </tr>
+            <tr>
+                <td><b>Direccion: </b></td>
+                <td>{{owner.address}}</td>
+            </tr>
+            <tr>
+                <td><b>Ciudad: </b></td>
+                <td>{{owner.city}}</td>
+            </tr>
+            <tr>
+                <td><b>Telefono: </b></td>
+                <td>{{owner.telephone}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<button ></button>
+<button class="btn btn-secondary" routerLink="/owners/">Volver</button>
+<span> | </span>
+<button class="btn btn-primary" routerLink="/crud-owner/{{owner.id}}">Modificar Owner</button>
+<span> | </span>
+<button class="btn btn-danger" (click)="eliminarOwner(owner)">Eliminar Owner</button>
