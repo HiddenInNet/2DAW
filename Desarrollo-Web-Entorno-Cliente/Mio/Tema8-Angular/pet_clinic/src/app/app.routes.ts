@@ -5,6 +5,10 @@ import { CrudOwnerComponent } from './components/crud-owner/crud-owner.component
 import { VetsComponent } from './components/vets/vets.component';
 import { DetailVetsComponent } from './components/detail-vets/detail-vets.component';
 import { HomeComponent } from './components/home/home.component';
+import { CrudVetComponent } from './components/crud-vet/crud-vet.component';
+import { PetsComponent } from './components/pets/pets.component';
+import { DetailPetsComponent } from './components/detail-pets/detail-pets.component';
+import { CrudPetComponent } from './components/crud-pet/crud-pet.component';
 
 export const routes: Routes = [
     {
@@ -30,5 +34,21 @@ export const routes: Routes = [
     {
         path: 'vet/:id',
         component: DetailVetsComponent
+    },
+    {
+        path: 'crud-vet/:id',
+        component: CrudVetComponent
+    },
+    {
+        path: 'pets',
+        component: PetsComponent
+    },
+    {
+        path: 'pet/:id',
+        component: DetailPetsComponent
+    },
+    {
+        path: 'crud-pet/:id',
+        component: CrudPetComponent
     }
 ];

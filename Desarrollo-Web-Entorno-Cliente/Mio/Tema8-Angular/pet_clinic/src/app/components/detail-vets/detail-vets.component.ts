@@ -6,7 +6,7 @@ import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-detail-vets',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './detail-vets.component.html',
   styleUrl: './detail-vets.component.sass'
 })
@@ -15,19 +15,15 @@ export class DetailVetsComponent {
   public vet: Vet;
 
   constructor(private peti: VetService, private ruta: Router, private activatedRoute: ActivatedRoute) {
-  
-    this.vet = {
-      id: -1,
-      firstName: "Pepe",
-      lastName: "Villuela"
-    }
+
+    this.vet = <Vet>{}
   }
 
   ngOnInit() {
 
     const vet_id = this.activatedRoute.snapshot.params["id"];
 
-    this.peti.getVetById(this.vet).subscribe({
+    this.peti.getVetById(vet_id).subscribe({
       next: datos => {
         console.log("detalles", datos);
 
@@ -35,6 +31,10 @@ export class DetailVetsComponent {
       },
       error: error => console.log(error)
     })
+
+  }
+
+  removeVet(vet: Vet) {
 
   }
 }

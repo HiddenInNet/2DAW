@@ -1,0 +1,54 @@
+<div class="container container-fluid">
+    <h1>{{textoBoton}} Owner</h1>
+</div>
+<div class="container container-fluid">
+    <form class="form-horizontal" #ownerForm="ngForm" (ngSubmit)="onSubmit(ownerForm.value)">
+        <div class="mb-3">
+            <label class="form-label" for="firstName">First name: </label>
+            <input class="form-control" required type="text" name="firstName" id="firstName"
+                [(ngModel)]="owner.firstName" #firstName="ngModel">
+            <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+                El formato del nombre es inválido
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="lastName">Last Name: </label>
+            <input class="form-control" required type="text" name="lastName" id="lastName" [(ngModel)]="owner.lastName"
+                #lastName="ngModel">
+            <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+                El formato del apellido es inválido
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="address">Address: </label>
+            <input class="form-control" required type="text" name="address" id="address" [(ngModel)]="owner.address"
+                #address="ngModel">
+        </div>
+        <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+            La dirección es inválida
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="city">City: </label>
+            <input class="form-control" required type="text" name="city" id="city" [(ngModel)]="owner.city"
+                #city="ngModel">
+        </div>
+        <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+            La ciudad es inválida
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="telephone">Telephone: </label>
+            <input class="form-control" required type="text" name="telephone" id="telephone"
+                [(ngModel)]="owner.telephone" #telephone="ngModel">
+        </div>
+        <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+            El teléfono es inválido
+        </div>
+
+        <a class="btn btn-danger" role="button" routerLink="/owners">Cancelar</a>
+        <span> | </span>
+        <button class="btn btn-primary">{{textoBoton}}</button>
+    </form>
+</div>

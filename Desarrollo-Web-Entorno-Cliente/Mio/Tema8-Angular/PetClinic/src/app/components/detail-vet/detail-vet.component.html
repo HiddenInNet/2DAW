@@ -1,0 +1,28 @@
+<h1>Veterinarios</h1>
+
+<div class="container container-fluid">
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td><b>Nombre: </b></td>
+                <td>{{vet.firstName + " " +vet.lastName}}</td>
+            </tr>
+            <tr>
+                <td><b>Especialidades: </b></td>
+                <td>
+                    @for (spe of vet.specialties; track $index) {
+                        {{spe.name}},
+                        }    
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<button class="btn btn-secondary" routerLink="/vets/">Volver</button>
+<span> | </span>
+<button class="btn btn-primary" routerLink="/form-vet/{{vet.id}}">Modificar Owner</button>
+<span> | </span>
+<button class="btn btn-danger" (click)="removeVet(vet)">Eliminar Owner</button>

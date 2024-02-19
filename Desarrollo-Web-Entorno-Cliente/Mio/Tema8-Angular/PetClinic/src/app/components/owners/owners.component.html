@@ -1,0 +1,32 @@
+<h1>Owners list
+    <button class="btn btn-success" routerLink="/form-owner/-1">Añadir Owner</button>
+</h1>
+
+<div class="container container-fluid">
+    <table class="table table-striped">
+        <thead>
+            <tr class="table-info">
+                <th>NAME</th>
+                <th>ADDRESS</th>
+                <th>CITY</th>
+                <th>TELEPHONE</th>
+                <th>PETS</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (o of owners; track $index) {
+            <tr>
+                <td><a routerLink="/owner/{{o.id}}">{{o.firstName +" "+ o.lastName}}</a></td>
+                <td>{{o.address}}</td>
+                <td>{{o.city}}</td>
+                <td>{{o.telephone}}</td>
+                <td>{{o.pets}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <button class="btn btn-secondary" routerLink="/">Atrás</button>
+</div>

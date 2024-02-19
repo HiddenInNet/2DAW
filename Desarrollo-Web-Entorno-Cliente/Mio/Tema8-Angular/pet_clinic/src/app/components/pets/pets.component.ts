@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Pet } from '../../models/pet';
+import { OwnerService } from '../../services/owner.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pets',
@@ -8,5 +11,18 @@ import { Component } from '@angular/core';
   styleUrl: './pets.component.sass'
 })
 export class PetsComponent {
+
+  public pet: Pet;
+  public pets: Array<Pet> = [];
+
+  constructor(private peti: OwnerService, private ruta: Router, private activatedRoute: ActivatedRoute) {
+
+    this.pet = <Pet>{};
+  }
+
+  ngOnInit() {
+
+
+  }
 
 }

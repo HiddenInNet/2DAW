@@ -33,4 +33,40 @@ export class VetService {
     return this.http.post<Vet>(this.url, pa);
 
   }
+
+  insertVet(vet: Vet){
+    
+    console.log("Estamos dentro de insertVet()");
+
+    let pa = JSON.stringify({
+      accion: "AnadeVet",
+      vet: vet
+    });
+
+    return this.http.post<Vet>(this.url, pa);
+  }
+
+  updateVet(vet: Vet) {
+
+    console.log("Dentro de updateVet()");
+
+    let pa = JSON.stringify({
+      accion: "ModificaVet",
+      vet: vet
+    });
+
+    return this.http.post<Vet>(this.url, pa);
+  }
+
+  removeVet(vet: Vet) {
+
+    console.log("Dentro de removeOwner()");
+
+    let pa = JSON.stringify({
+      accion: "BorraVet",
+      id: vet.id
+    });
+
+    return this.http.post<Vet>(this.url, pa);
+  }
 }

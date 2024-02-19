@@ -16,13 +16,8 @@ export class VetsComponent {
   public vets: Vet[] = [];
 
   constructor(private peti: VetService, private ruta: Router, private activatedRoute: ActivatedRoute) {
-  
-    this.vet = {
-      id: -1,
-      firstName: "Pepe",
-      lastName: "Villuela"
-    }
-  
+
+    this.vet = <Vet>{}
   }
 
   ngOnInit() {
@@ -37,3 +32,6 @@ export class VetsComponent {
     })
   }
 }
+
+
+

@@ -9,6 +9,7 @@
                 <th>NAME</th>
                 <th>FIRST NAME</th>
                 <th>LAST NAME</th>
+                <th>SPECIALTIES</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,11 @@
                 <td><a routerLink="/vet/{{v.id}}">{{v.firstName +" "+ v.lastName}}</a></td>
                 <td>{{v.firstName}}</td>
                 <td>{{v.lastName}}</td>
+                <td>
+                    @for (spe of v.specialties; track $index) {
+                    {{spe.name}},
+                    }
+                </td>
             </tr>
             }
         </tbody>

@@ -42,7 +42,7 @@ export class DetailOwnersComponent {
 
   }
 
-  eliminarOwner(owner: Owner) {
+  removeOwner(owner: Owner) {
 
     if (confirm("Estás seguro de que quieres borrar a " + this.owner.firstName + " " + this.owner.lastName)) {
 
