@@ -2,36 +2,32 @@ import { Component } from '@angular/core';
 import { OwnerService } from '../../services/owner.service';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { Owner } from '../../models/owner';
+import { Pet } from '../../models/pet';
+import { DatePipe, DecimalPipe } from '@angular/common';
+import { Visit } from '../../models/visit';
 
 @Component({
   selector: 'app-detail-owner',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, DecimalPipe, DatePipe],
   templateUrl: './detail-owner.component.html',
   styleUrl: './detail-owner.component.scss'
 })
 export class DetailOwnerComponent {
 
   public owner: Owner;
+  public pets: Pet[] = [];
 
   constructor(private peti: OwnerService, private ruta: Router, private activatedRoute: ActivatedRoute) {
 
-    this.owner = {
-      id: -1,
-      firstName: "John",
-      lastName: "Doe",
-      address: "calle calle",
-      city: "Sevilla",
-      telephone: "669621527",
-      pets: []
-    }
+    this.owner = <Owner>{}
   }
 
   ngOnInit() {
 
     const owner_id = this.activatedRoute.snapshot.params["id"];
 
-    this.peti.getOwnerById(owner_id).subscribe({
+    this.peti.getPetsByOwnerId(owner_id).subscribe({
       next: datos => {
         console.log("detalles", datos);
 
@@ -57,5 +53,9 @@ export class DetailOwnerComponent {
       })
 
     }
+  }
+
+  removeVisit(visit: Visit) {
+
   }
 }

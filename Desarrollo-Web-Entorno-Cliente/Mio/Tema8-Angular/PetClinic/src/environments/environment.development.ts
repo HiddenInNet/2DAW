@@ -1,4 +1,5 @@
 export const environment = {
+
     compararObjetos: function (a:any, b:any) {
         
         return JSON.stringify(a) === JSON.stringify(b);
@@ -25,4 +26,7 @@ export const environment = {
         });
         return res;
     },
+
+    ENLACE_API: "http://localhost/pet_clinic/servicios.php",
+
 }

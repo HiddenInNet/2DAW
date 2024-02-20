@@ -6,8 +6,8 @@ export interface Pet {
 
     id: number;
     name: string;
-    birth_date: Date;
-    type: Type;
+    birthDate: Date;
+    typeName: Type;
     owner: Owner;
-    visits: Visit [];
+    visits: Visit[];
 }

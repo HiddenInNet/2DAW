@@ -43,7 +43,7 @@ export class OwnersComponent {
   }
 
   goToOwner(id: number) {
-    
-    this.ruta.navigate(['/']);
+
+    this.ruta.navigate(['/owners']);
   }
 }

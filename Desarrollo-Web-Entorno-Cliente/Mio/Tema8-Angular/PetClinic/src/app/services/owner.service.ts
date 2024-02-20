@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Owner } from '../models/owner';
+import { Pet } from '../models/pet';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OwnerService {
 
-  private url: string = "http://localhost/pet_clinic/servicios.php";
+  private url: string = environment.ENLACE_API;
 
   constructor(private http: HttpClient) { }
 
@@ -66,5 +68,29 @@ export class OwnerService {
     })
 
     return this.http.post<Owner>(this.url, pa);
+  }
+
+  getPetsByOwnerId(owner_id: number) {
+
+    console.log("Dentro de getPetsByOwnerId()");
+
+    let pa = JSON.stringify({
+      accion: "ObtenerOwnerId_Pets",
+      id: owner_id,
+    })
+
+    return this.http.post<Owner>(this.url, pa);
+  }
+
+  getPetVisits(pet: Pet) {
+
+    console.log("Dentro de getPetVisits()");
+
+    let pa = JSON.stringify({
+      accion: "ListarVisitasPet",
+      id: pet,
+    })
+
+    return this.http.post<any>(this.url, pa);
   }
 }

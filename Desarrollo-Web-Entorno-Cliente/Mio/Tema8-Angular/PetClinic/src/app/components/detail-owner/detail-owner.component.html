@@ -29,3 +29,60 @@
 <button class="btn btn-primary" routerLink="/form-owner/{{owner.id}}">Modificar Owner</button>
 <span> | </span>
 <button class="btn btn-danger" (click)="removeOwner(owner)">Eliminar Owner</button>
+
+@for (p of owner.pets; track $index) {
+
+<hr color="green">
+
+<div class="container container-fluid">
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td><b>Nombre: </b></td>
+                <td>{{p.name}}</td>
+            </tr>
+            <tr>
+                <td><b>Fecha Nacimiento: </b></td>
+                <td>{{p.birthDate | date}}</td>
+            </tr>
+            <tr>
+                <td><b>Tipo: </b></td>
+                <td>{{p.typeName}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container container-fluid">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><b>Visitas: </b></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID</td>
+                <td>Fecha visita</td>
+                <td>Descripción visita</td>
+                <td>Modificar cita</td>
+                <td>Eliminar cita</td>
+            </tr>
+
+            @for (visit of p.visits; track $index) {
+
+            <tr>
+                <td>{{visit.id}}</td>
+                <td>{{visit.visitDate | date}}</td>
+                <td>{{visit.description}}</td>
+                <td><button class="btn btn-primary" (click)="removeOwner(owner)">MODIFICAR</button></td>
+                <td><button class="btn btn-danger" (click)="removeVisit(visit)">ELIMINAR</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+}
