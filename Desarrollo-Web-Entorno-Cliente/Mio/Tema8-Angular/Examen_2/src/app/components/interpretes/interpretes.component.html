@@ -1,0 +1,30 @@
+<h1>Lista de interpretes</h1>
+
+<div class="container container-fluid">
+    <table class="table table-striped">
+        <thead>
+            <tr class="table-info">
+                <th>NOMBRE</th>
+                <th>APELLIDOS</th>
+                <th>FECHA NACIMIENTO</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (inter of interpretes; track $index) {
+            <tr>
+                <td><a routerLink="/interprete-form/{{inter.id}}">{{inter.nombre}}</a></td>
+                <td>{{inter.apellidos}}</td>
+                <td>{{inter.fecha_nacimiento | date}}</td>
+                <td><button class="btn btn-danger" (click)="removeInterprete(inter)">Delete</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <button class="btn btn-secondary" routerLink="/">Atrás</button>
+    <span> | </span>
+    <button class="btn btn-success" routerLink="/interprete-form/-1">Añadir Interprete</button>
+</div>

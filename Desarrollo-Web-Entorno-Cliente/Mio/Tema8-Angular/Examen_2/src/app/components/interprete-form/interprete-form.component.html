@@ -1,0 +1,45 @@
+<div class="container container-fluid">
+    <h1>{{textoBoton}} Interprete</h1>
+</div>
+<div class="container container-fluid">
+    <form class="form-horizontal" #interpreteForm="ngForm" (ngSubmit)="onSubmit(interpreteForm.value)">
+        <div class="mb-3">
+            <label class="form-label" for="nombre">Nombre </label>
+            <input class="form-control" required type="text" name="nombre" id="nombre" [(ngModel)]="interprete.nombre"
+                #nombre="ngModel">
+            <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                El formato del nombre es inválido
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="apellidos">Apellidos: </label>
+            <input class="form-control" required type="text" name="apellidos" id="apellidos"
+                [(ngModel)]="interprete.apellidos" #apellidos="ngModel">
+            <div [hidden]="apellidos.valid || apellidos.pristine" class="alert alert-danger">
+                El formato del apellido es inválido
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="fecha_nacimiento">Fecha de Nacimiento: </label>
+            <input class="form-control" required type="date" name="fecha_nacimiento" id="fecha_nacimiento"
+                [(ngModel)]="interprete.fecha_nacimiento" #fecha_nacimiento="ngModel">
+        </div>
+        <div [hidden]="fecha_nacimiento.valid || fecha_nacimiento.pristine" class="alert alert-danger">
+            La fecha de nacimiento es invalida
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="biografia">Biografia: </label>
+            <textarea class="form-control" rows="5" type=" text" name="biografia" id="biografia"
+                [(ngModel)]="interprete.biografia" #biografia="ngModel"></textarea>
+        </div>
+        <div [hidden]="biografia.valid || biografia.pristine" class="alert alert-danger">
+            La biografia es invalida
+        </div>
+
+        <a class="btn btn-danger" role="button" routerLink="/interpretes">Cancelar</a>
+        <span> | </span>
+        <button class="btn btn-primary">{{textoBoton}}</button>
+    </form>
+</div>

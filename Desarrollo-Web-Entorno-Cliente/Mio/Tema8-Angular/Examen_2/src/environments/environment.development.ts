@@ -26,4 +26,6 @@ export const environment = {
         });
         return res;
     },
+
+    ENLACE_API: "http://localhost/serviciosweb/cine/servicios.php", 
 };

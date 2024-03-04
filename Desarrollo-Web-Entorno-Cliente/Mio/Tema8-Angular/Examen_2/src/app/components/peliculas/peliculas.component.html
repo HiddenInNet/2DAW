@@ -1,0 +1,30 @@
+<h1>Lista de peliculas</h1>
+
+<div class="container container-fluid">
+    <table class="table table-striped">
+        <thead>
+            <tr class="table-info">
+                <th>NOMBRE</th>
+                <th>FECHA</th>
+                <th>GENERO</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (pel of peliculas; track $index) {
+            <tr>
+                <td><a routerLink="/pelicula-form/{{pel.id}}">{{pel.nombre}}</a></td>
+                <td>{{pel.fecha | date}}</td>
+                <td>{{pel.genero.nombre}}</td>
+                <td><button class="btn btn-danger" (click)="removePelicula(pel)">Delete</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <button class="btn btn-secondary" routerLink="/">Atrás</button>
+    <span> | </span>
+    <button class="btn btn-success" routerLink="/pelicula-form/-1">Añadir Pelicula</button>
+</div>

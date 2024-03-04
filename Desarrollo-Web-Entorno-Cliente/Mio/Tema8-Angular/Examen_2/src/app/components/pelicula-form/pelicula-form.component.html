@@ -1,0 +1,64 @@
+<div class="container container-fluid">
+    <h1>{{textoBoton}} Pelicula</h1>
+</div>
+<div class="container container-fluid">
+    <form class="form-horizontal" #peliculaForm="ngForm" (ngSubmit)="onSubmit(peliculaForm.value)">
+        <div class="mb-3">
+            <label class="form-label" for="nombre">Nombre: </label>
+            <input class="form-control" required type="text" name="nombre" id="nombre" [(ngModel)]="pelicula.nombre"
+                #nombre="ngModel">
+            <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                El formato del nombre es inválido
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="fecha">Fecha: </label>
+            <input class="form-control" required type="date" name="fecha" id="fecha" [(ngModel)]="pelicula.fecha"
+                #fecha="ngModel">
+        </div>
+        <div [hidden]="fecha.valid || fecha.pristine" class="alert alert-danger">
+            La fecha es invalida
+        </div>
+
+        <!-- GENEROS -->
+        <div class="mb-3">
+            <label for="genero">Genero</label>
+            <select class="form-control" [(ngModel)]="pelicula.genero" name="genero" #genero="ngModel">
+                @for (gen of generos; track $index) {
+                <option [ngValue]="gen">
+                    {{gen.nombre}}
+                </option>
+                }
+            </select>
+        </div>
+
+        <!-- INTERPRETES -->
+        <div class="mb-3">
+            <label for="interprete">Interpretes</label>
+            <select multiple class="form-control" [(ngModel)]="pelicula.interpretes" name="interprete"
+                #interprete="ngModel">
+
+                @for (inter of interpretes; track $index) {
+                <option [ngValue]="inter">
+                    {{inter.nombre}}
+                </option>
+                }
+
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="sinopsis">Sinopsis: </label>
+            <textarea class="form-control" rows="5" type=" text" name="sinopsis" id="sinopsis"
+                [(ngModel)]="pelicula.sinopsis" #sinopsis="ngModel"></textarea>
+        </div>
+        <div [hidden]="sinopsis.valid || sinopsis.pristine" class="alert alert-danger">
+            La sinopsis es invalida
+        </div>
+
+        <a class="btn btn-danger" role="button" routerLink="/peliculas">Cancelar</a>
+        <span> | </span>
+        <button class="btn btn-primary">{{textoBoton}}</button>
+    </form>
+</div>
